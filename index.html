@@ -136,10 +136,10 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
 /* Grid marcas */
 .mgrid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:auto;gap:2px;background:var(--line-light);}
 .mc{position:relative;overflow:hidden;cursor:pointer;background:var(--black2);}
-.mc-a{grid-column:1/6;min-height:500px;}
-.mc-b{grid-column:6/9;min-height:246px;}
-.mc-c{grid-column:9/13;min-height:246px;}
-.mc-d{grid-column:6/13;min-height:246px;}
+.mc{min-height:320px;}
+
+
+
 .mc-e{grid-column:1/13;min-height:72px;display:flex;align-items:center;background:transparent;border:0.5px solid var(--line-light);padding:1.5rem 2rem;gap:2rem;opacity:0.5;transition:opacity 0.2s;}
 .mc-e:hover{opacity:0.8;}
 .mc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;transition:opacity 0.45s,transform 0.55s;}
@@ -300,13 +300,13 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
   <div class="nav-logo">FIESTO<em>P</em>IA</div>
   <ul class="nav-menu">
     <li><a href="/marcas">Marcas</a></li>
-    <li><a href="/para-salas">Para salas</a></li>
+    <li><a href="/pages/para-salas.html">Para salas</a></li>
     <li><a href="#eventos">Eventos</a></li>
     <li><a href="/nosotros">Nosotros</a></li>
   </ul>
   <div class="nav-right">
     <span class="nav-tel">645 714 101</span>
-    <button class="nav-btn" onclick="window.location.href='/para-salas'">Presupuesto</button>
+    <button class="nav-btn" onclick="window.location.href='/pages/para-salas.html'">Presupuesto</button>
   </div>
 </nav>
 
@@ -332,7 +332,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
         </h1>
         <p class="hero-sub"><strong>25 años</strong> creando experiencias de ocio en la Comunitat Valenciana. Producción propia, sin intermediarios.</p>
         <div class="hero-actions">
-          <button class="btn-gold" onclick="window.location.href='/para-salas'">Ver formatos para salas</button>
+          <button class="btn-gold" onclick="window.location.href='/pages/para-salas.html'">Ver formatos para salas</button>
           <button class="btn-ghost-light" onclick="document.getElementById('eventos').scrollIntoView({behavior:'smooth'})">Próximos eventos</button>
         </div>
       </div>
@@ -421,7 +421,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
   <div class="mgrid">
 
     <!-- SANSARU grande -->
-    <div class="mc mc-a" onclick="window.open('https://sansaru.es/sansaru')">
+    <div class="mc" onclick="window.open('https://sansaru.es/sansaru')">
       <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/4.webp" alt="Sansaru">
       <div class="mc-ph"><div class="mc-ph-t">S</div></div>
       <div class="mc-color" style="background:linear-gradient(135deg,#C9A84C,transparent);"></div>
@@ -437,7 +437,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
     </div>
 
     <!-- WEDDINGS -->
-    <div class="mc mc-b" onclick="window.location.href='/weddings'">
+    <div class="mc" onclick="window.location.href='/weddings'">
       <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/5.webp" alt="Sansaru Weddings">
       <div class="mc-ph"><div class="mc-ph-t">SW</div></div>
       <div class="mc-color" style="background:linear-gradient(135deg,rgba(180,100,140,0.5),transparent);"></div>
@@ -453,7 +453,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
     </div>
 
     <!-- OCHENTERA -->
-    <div class="mc mc-c" onclick="window.location.href='/ochentera'">
+    <div class="mc" onclick="window.location.href='/ochentera'">
       <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/2.webp" alt="Ochentera">
       <div class="mc-ph"><div class="mc-ph-t">80</div></div>
       <div class="mc-color" style="background:linear-gradient(135deg,rgba(200,160,60,0.4),transparent);"></div>
@@ -469,13 +469,13 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
     </div>
 
     <!-- BOCACHICA horizontal -->
-    <div class="mc mc-d" onclick="window.location.href='/bocachica'">
+    <div class="mc" onclick="window.location.href='/bocachica'">
       <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/1.webp" alt="Bocachica">
       <div class="mc-ph"><div class="mc-ph-t">BC</div></div>
       <div class="mc-color" style="background:linear-gradient(90deg,rgba(60,140,100,0.35),transparent);"></div>
       <div class="mc-grad" style="background:linear-gradient(to right,rgba(10,10,10,0.97) 0%,rgba(10,10,10,0.15) 60%,transparent 100%);"></div>
       <div class="mc-arrow">→</div>
-      <div class="mc-body" style="flex-direction:row;align-items:flex-end;justify-content:space-between;">
+      <div class="mc-body" >
         <div>
           <div class="mc-accent" style="background:#3C8C64;"></div>
           <div class="mc-name">Bocachica</div>
@@ -511,10 +511,10 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
   </div>
 
   <div class="ev-tabs">
-    <button class="ev-tab on" onclick="filtrar('todos',this)">Todos</button>
-    <button class="ev-tab" onclick="filtrar('sansaru',this)">Sansaru</button>
-    <button class="ev-tab" onclick="filtrar('ochentera',this)">Ochentera</button>
-    <button class="ev-tab" onclick="filtrar('bocachica',this)">Bocachica</button>
+    <button class="ev-tab on" onclick="filtrar('todos',this)" data-marca="todos">Todos</button>
+    <button class="ev-tab" onclick="filtrar('sansaru',this)" data-marca="sansaru">Sansaru</button>
+    <button class="ev-tab" onclick="filtrar('ochentera',this)" data-marca="ochentera">Ochentera</button>
+    <button class="ev-tab" onclick="filtrar('bocachica',this)" data-marca="bocachica">Bocachica</button>
   </div>
 
   <div class="egrid" id="egrid">
@@ -615,7 +615,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
       <div class="qcard-n">01</div>
       <div class="qcard-title">Salas y promotores</div>
       <div class="qcard-text">Formatos probados con público propio. Producción completa, rider técnico y sin intermediarios. Tú pones el aforo, nosotros la fiesta.</div>
-      <a class="qcard-link" href="/para-salas">Ver formatos B2B →</a>
+      <a class="qcard-link" href="/pages/para-salas.html">Ver formatos B2B →</a>
     </div>
     <div class="qcard">
       <div class="qcard-line"></div>
@@ -695,7 +695,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
     </div>
     <div class="cta-panel">
       <div class="cta-panel-label">Contáctanos ahora</div>
-      <button class="btn-gold-full" onclick="window.location.href='/para-salas'">Pedir presupuesto</button>
+      <button class="btn-gold-full" onclick="window.location.href='/pages/para-salas.html'">Pedir presupuesto</button>
       <button class="btn-outline-light" onclick="window.open('https://wa.me/34645714101')">WhatsApp · 645 714 101</button>
       <div class="cta-tel">Villalonga, Valencia · Respuesta en 48h</div>
     </div>
@@ -729,7 +729,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
       <div class="fcol-t">Empresa</div>
       <ul class="flinks">
         <li><a href="/nosotros">Sobre nosotros</a></li>
-        <li><a href="/para-salas">Para salas B2B</a></li>
+        <li><a href="/pages/para-salas.html">Para salas B2B</a></li>
         <li><a href="/eventos">Calendario</a></li>
         <li><a href="/contacto">Contacto</a></li>
       </ul>
@@ -783,18 +783,130 @@ function filtrar(m,btn){
 }
 </script>
 
-<!-- Netlify Identity Widget -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/34645714101" target="_blank"
+   style="position:fixed;bottom:24px;right:24px;z-index:999;
+          width:56px;height:56px;border-radius:50%;
+          background:#25D366;display:flex;align-items:center;
+          justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);
+          transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;"
+   onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 6px 24px rgba(37,211,102,0.5)'"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(37,211,102,0.4)'"
+   title="WhatsApp · 645 714 101">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
 <script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
+
+// Eventos configurados manualmente - actualiza aquí cuando tengas nuevas fechas
+// Cuando conectes la API de Fourvenues esto se actualizará solo
+var EVENTOS = [
+  // Añade aquí tus eventos con este formato:
+  // { marca:"ochentera", nombre:"Ochentera · Primavera", fecha:"Sáb 12 Abr 2026 · 17:00h", lugar:"Sala · Gandia", precio:12, url:"https://pro.fourvenues.com/TU_EVENTO", pocas:false }
+];
+
+// Si no hay eventos, ocultar la sección completa
+(function(){
+  var hoy = new Date();
+  // Por ahora la sección siempre se muestra con los eventos que hay en el HTML
+  // Cuando tengas la URL de tu perfil de Fourvenues la conectamos aquí
+})();
+</script>
+
+<script>
+// ── EVENTOS FOURVENUES — DINÁMICO ─────────────────────────────────────────────
+const MARCA_COLORES = {
+  sansaru:   { bg:'#FCE4D6', color:'#7A2500', label:'Sansaru' },
+  ochentera: { bg:'#FFF3CD', color:'#7A5200', label:'Ochentera' },
+  bocachica: { bg:'#D4EDDA', color:'#1A5C30', label:'Bocachica' },
+  weddings:  { bg:'#F8D7E8', color:'#6B0F3A', label:'Weddings' },
+  rainbow:   { bg:'#E8D5F5', color:'#4A0E7A', label:'Rainbow' },
+  fiestopia: { bg:'#FCE4D6', color:'#7A2500', label:'Fiestopia' }
+};
+
+function formatFecha(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  const dias = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  return `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]} ${d.getFullYear()} · ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}h`;
+}
+
+function crearTarjeta(ev, grande) {
+  const c = MARCA_COLORES[ev.marca] || MARCA_COLORES.fiestopia;
+  const precio = ev.precio > 0 ? `${ev.precio} €` : 'Gratis';
+  const vendido = ev.pocas_entradas ? '<div class="ecard-sold">Pocas entradas</div>' : '';
+  const imgHTML = ev.imagen
+    ? `<img src="${ev.imagen}" alt="${ev.nombre}" style="width:100%;height:100%;object-fit:cover;opacity:0.75;">`
+    : `<div class="ecard-ph">${c.label.toUpperCase()}</div>`;
+
+  return `
+    <div class="ecard${grande ? ' big' : ''}" data-m="${ev.marca}" onclick="window.open('${ev.url}','_blank')">
+      <div class="ecard-img">
+        ${imgHTML}
+        <div class="ecard-badge" style="background:${c.bg};color:${c.color};">${c.label}</div>
+        ${vendido}
+      </div>
+      <div class="ecard-body">
+        <div class="ecard-date">${formatFecha(ev.fecha)}</div>
+        <div class="ecard-name">${ev.nombre}</div>
+        <div class="ecard-lugar">${ev.lugar}${ev.ciudad ? ' · ' + ev.ciudad : ''}</div>
+        <div class="ecard-foot">
+          <div class="ecard-price">${precio} <span>entrada general</span></div>
+          <button class="ecard-btn gold" onclick="event.stopPropagation();window.open('${ev.url}','_blank')">Comprar</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+async function cargarEventos() {
+  const seccion = document.getElementById('eventos');
+  const grid = document.getElementById('egrid');
+  const nl = document.querySelector('.ev-nl');
+  if (!grid) return;
+
+  try {
+    const res = await fetch('/.netlify/functions/eventos');
+    const data = await res.json();
+    const eventos = data.eventos || [];
+
+    if (eventos.length === 0) {
+      // Sin eventos — ocultar sección completa
+      if (seccion) seccion.style.display = 'none';
+      return;
+    }
+
+    // Mostrar sección
+    if (seccion) seccion.style.display = '';
+
+    // Renderizar tarjetas
+    grid.innerHTML = '';
+    eventos.forEach((ev, i) => {
+      grid.innerHTML += crearTarjeta(ev, i === 0);
     });
+
+    // Actualizar filtros
+    document.querySelectorAll('.ev-tab').forEach(btn => {
+      btn.onclick = function() {
+        document.querySelectorAll('.ev-tab').forEach(b => b.classList.remove('on'));
+        this.classList.add('on');
+        const m = this.dataset.marca || 'todos';
+        document.querySelectorAll('.ecard').forEach(c => {
+          c.style.display = (m === 'todos' || c.dataset.m === m) ? '' : 'none';
+        });
+      };
+    });
+
+  } catch(e) {
+    console.warn('No se pudieron cargar eventos de Fourvenues:', e);
+    // Fallback — mantener los eventos hardcodeados del HTML
   }
+}
+
+// Cargar eventos al iniciar la página
+document.addEventListener('DOMContentLoaded', cargarEventos);
 </script>
 </body>
 </html>
