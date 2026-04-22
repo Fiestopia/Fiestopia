@@ -8,35 +8,41 @@ exports.handler = async function(event, context) {
     };
   }
 
-  try {
-    const response = await fetch('https://api.fourvenues.com/integrations/events/', {
-      headers: {
-        'X-Api-Key': API_KEY,
-        'Content-Type': 'application/json'
-      }
-    });
+  // Probar endpoints posibles de Fourvenues
+  const ENDPOINTS = [
+    'https://api.fourvenues.com/integrations/events/',
+    'https://api-alpha.fourvenues.com/integrations/events/',
+    'https://app.fourvenues.com/api/integrations/events/',
+    'https://pro.fourvenues.com/api/integrations/events/'
+  ];
 
-    if (!response.ok) {
-      throw new Error(`Fourvenues error: ${response.status}`);
+  const resultados = {};
+
+  for (const url of ENDPOINTS) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          'X-Api-Key': API_KEY,
+          'x-api-key': API_KEY,
+          'Content-Type': 'application/json'
+        }
+      });
+      resultados[url] = {
+        status: response.status,
+        ok: response.ok,
+        body: response.ok ? await response.json() : await response.text()
+      };
+    } catch (e) {
+      resultados[url] = { error: e.message };
     }
-
-    const data = await response.json();
-
-    // Devolver TODO sin filtrar para ver qué devuelve Fourvenues exactamente
-    return {
-      statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(data)
-    };
-
-  } catch (error) {
-    return {
-      statusCode: 200,
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ error: error.message })
-    };
   }
+
+  return {
+    statusCode: 200,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
+    body: JSON.stringify(resultados, null, 2)
+  };
 };
