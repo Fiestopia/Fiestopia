@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sansaru On Tour · Fiestopia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0A0A0A;--black2:#111111;--black3:#1A1A1A;
+  --white:#FFFFFF;--off-white:#F5F4F0;--light:#ECECEA;
+  --gold:#C9A84C;--gold2:#E2BC6A;
+  --text-dark:#1A1A1A;--text-mid:#555550;
+  --text-light:rgba(255,255,255,0.55);--text-dimmer:rgba(255,255,255,0.25);
+  --line-dark:rgba(0,0,0,0.08);--line-light:rgba(255,255,255,0.08);--line-light2:rgba(255,255,255,0.14);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:#fff;background:var(--black);overflow-x:hidden;}
+::selection{background:var(--gold);color:#fff;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+.gold-line{height:3px;background:var(--gold);width:100%;}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;position:fixed;top:0;left:0;right:0;z-index:100;transition:all 0.3s;}
+.nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--line-light2);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:#fff;}
+.nav-logo em{font-style:normal;color:var(--gold);}
+.nav-menu{display:flex;gap:2.5rem;list-style:none;}
+.nav-menu a{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.nav-menu a:hover{color:#fff;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+.nav-back{font-size:11px;color:var(--text-dimmer);letter-spacing:0.5px;text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:#fff;}
+.nav-btn{background:var(--gold);color:var(--black);padding:9px 22px;border-radius:3px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--black);}
+.hero-media{position:absolute;inset:0;}
+.hero-media video{width:100%;height:100%;object-fit:cover;opacity:0.4;}
+.hero-media img{width:100%;height:100%;object-fit:cover;opacity:0.4;}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0) 35%,rgba(10,10,10,0.75) 70%,var(--black) 100%);}
+.hero-texture{position:absolute;inset:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.hero-content{position:relative;z-index:2;padding:0 2.5rem 5rem;width:100%;}
+.hero-inner{display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:flex-end;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:2.5rem;}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero-badge-text{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-light);}
+.hero-title{font-family:'Bebas Neue',sans-serif;line-height:0.88;letter-spacing:0.5px;margin-bottom:2rem;}
+.hero-title .l1{display:block;font-size:min(12vw,118px);color:#fff;}
+.hero-title .l2{display:block;font-size:min(12vw,118px);color:var(--gold);}
+.hero-sub{font-size:16px;color:var(--text-light);line-height:1.8;max-width:500px;margin-bottom:2.5rem;font-weight:300;}
+.hero-sub strong{color:rgba(255,255,255,0.85);font-weight:400;}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--black);padding:14px 28px;border-radius:3px;font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.btn-gold:hover{background:var(--gold2);}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.7);padding:14px 28px;border-radius:3px;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;border:0.5px solid rgba(255,255,255,0.2);font-family:'DM Sans',sans-serif;transition:border-color 0.2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.45);}
+.hero-stats{background:rgba(255,255,255,0.04);border:0.5px solid var(--line-light2);border-radius:4px;overflow:hidden;}
+.hstats-grid{display:grid;grid-template-columns:1fr 1fr;}
+.hstat{padding:1.75rem 1.5rem;border-right:0.5px solid var(--line-light);border-bottom:0.5px solid var(--line-light);}
+.hstat:nth-child(2){border-right:none;}
+.hstat:nth-child(3){border-bottom:none;border-right:0.5px solid var(--line-light);}
+.hstat:nth-child(4){border-bottom:none;border-right:none;}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#fff;line-height:1;margin-bottom:4px;}
+.hstat-n em{color:var(--gold);font-style:normal;}
+.hstat-l{font-size:12px;color:var(--text-light);line-height:1.4;font-weight:300;}
+
+/* TICKER */
+.ticker{overflow:hidden;background:var(--gold);padding:0.875rem 0;}
+.ticker-track{display:flex;animation:scroll 30s linear infinite;white-space:nowrap;}
+.ti{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;color:rgba(10,10,10,0.55);padding:0 2rem;}
+.ti.bold{color:var(--black);}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECCIÓN BASE */
+.sec{padding:5rem 2.5rem;}
+.sec-border{border-bottom:0.5px solid var(--line-light);}
+.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:'';width:12px;height:1px;background:var(--gold);}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:#fff;line-height:0.92;margin-bottom:2.5rem;}
+.sec-title em{font-style:normal;color:var(--gold);}
+
+/* QUÉ ES */
+.que-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.que-text p{font-size:15px;color:var(--text-light);line-height:1.85;margin-bottom:1.5rem;font-weight:300;}
+.que-text p strong{color:rgba(255,255,255,0.85);font-weight:400;}
+.que-video{aspect-ratio:16/9;background:var(--black2);border-radius:3px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--line-light2);}
+.que-video img{width:100%;height:100%;object-fit:cover;opacity:0.6;}
+.play-btn{position:absolute;width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;z-index:2;}
+.play-btn:hover{background:rgba(201,168,76,0.15);}
+.play-btn::after{content:'';border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent var(--gold);margin-left:4px;}
+
+/* PRÓXIMOS EVENTOS — BLANCO */
+.eventos-sec{background:var(--off-white);padding:5rem 2.5rem;}
+.ev-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.ev-eyebrow::before{content:'';width:12px;height:1px;background:var(--gold);}
+.ev-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--black);line-height:0.92;margin-bottom:2.5rem;}
+.ev-title em{font-style:normal;color:var(--gold);}
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(0,0,0,0.06);border:0.5px solid rgba(0,0,0,0.06);}
+.ev-card{background:#fff;overflow:hidden;cursor:pointer;transition:background 0.2s;}
+.ev-card:hover{background:var(--light);}
+.ev-card.big{grid-column:span 2;}
+.ev-img{width:100%;aspect-ratio:16/9;background:var(--light);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.ev-card.big .ev-img{aspect-ratio:21/9;}
+.ev-img img{width:100%;height:100%;object-fit:cover;opacity:0.75;}
+.ev-ph{font-family:'Bebas Neue',sans-serif;font-size:48px;opacity:0.07;letter-spacing:2px;color:var(--black);}
+.ev-badge-s{position:absolute;top:10px;left:10px;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:#FCE4D6;color:#7A2500;font-weight:500;}
+.ev-sold{position:absolute;top:10px;right:10px;font-size:9px;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,0.9);color:var(--text-mid);}
+.ev-body{padding:1.25rem 1.5rem 1.5rem;}
+.ev-date{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px;}
+.ev-name{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--black);margin-bottom:3px;line-height:1.05;}
+.ev-card.big .ev-name{font-size:30px;}
+.ev-lugar{font-size:12px;color:var(--text-mid);margin-bottom:1.25rem;}
+.ev-foot{display:flex;align-items:center;justify-content:space-between;}
+.ev-price{font-size:15px;font-weight:500;color:var(--black);}
+.ev-price span{font-size:11px;font-weight:300;color:var(--text-mid);margin-left:2px;}
+.ev-btn{background:var(--gold);color:var(--black);padding:8px 18px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+.ev-ver-todos{display:inline-flex;align-items:center;gap:8px;margin-top:2rem;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);text-decoration:none;font-weight:500;}
+
+/* DJS */
+.djs-sec{background:var(--black2);padding:5rem 2.5rem;}
+.djs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-light);margin-top:0;}
+.dj-card{background:var(--black);overflow:hidden;cursor:pointer;transition:background 0.2s;}
+.dj-card:hover{background:var(--black3);}
+.dj-foto{width:100%;aspect-ratio:3/4;background:var(--black2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.dj-foto img{width:100%;height:100%;object-fit:cover;opacity:0.6;transition:opacity 0.3s;}
+.dj-card:hover .dj-foto img{opacity:0.75;}
+.dj-ph{font-family:'Bebas Neue',sans-serif;font-size:52px;opacity:0.06;letter-spacing:2px;color:#fff;}
+.dj-body{padding:1.5rem 1.75rem;}
+.dj-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;letter-spacing:0.5px;margin-bottom:4px;}
+.dj-rol{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);}
+
+/* MERCH */
+.merch-sec{background:var(--off-white);padding:5rem 2.5rem;}
+.merch-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--black);line-height:0.92;margin-bottom:2.5rem;}
+.merch-title em{font-style:normal;color:var(--gold);}
+.merch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(0,0,0,0.06);}
+.merch-item{background:#fff;overflow:hidden;cursor:pointer;transition:background 0.2s;}
+.merch-item:hover{background:var(--light);}
+.merch-foto{width:100%;aspect-ratio:1;background:var(--light);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.merch-foto img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.merch-item:hover .merch-foto img{transform:scale(1.04);}
+.merch-ph{font-size:10px;color:rgba(0,0,0,0.2);letter-spacing:1px;text-transform:uppercase;}
+.merch-body{padding:1rem 1.25rem 1.25rem;}
+.merch-name{font-size:14px;font-weight:400;color:var(--text-dark);margin-bottom:4px;}
+.merch-price{font-size:14px;color:var(--gold);font-weight:500;}
+.merch-btn{display:inline-block;margin-top:8px;font-size:11px;color:var(--text-mid);text-decoration:none;border-bottom:0.5px solid var(--line-dark);padding-bottom:1px;}
+
+/* PARA SALAS */
+.salas-sec{background:var(--black);padding:5rem 2.5rem;}
+.salas-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.salas-specs{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line-light);border:0.5px solid var(--line-light);margin-top:2.5rem;}
+.spec{background:var(--black2);padding:1.25rem 1.5rem;}
+.spec-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dimmer);margin-bottom:6px;}
+.spec-val{font-size:14px;font-weight:500;color:#fff;}
+.salas-text p{font-size:15px;color:var(--text-light);line-height:1.8;margin-bottom:1.25rem;font-weight:300;}
+.salas-text strong{color:rgba(255,255,255,0.85);font-weight:400;}
+.salas-actions{display:flex;gap:10px;margin-top:2.5rem;flex-wrap:wrap;}
+
+/* REDES */
+.redes-sec{background:var(--black2);padding:4rem 2.5rem;border-top:0.5px solid var(--line-light);}
+.redes-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;}
+.redes-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#fff;}
+.redes-title em{font-style:normal;color:var(--gold);}
+.redes-links{display:flex;gap:12px;}
+.red-btn{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:3px;border:0.5px solid var(--line-light2);font-size:12px;color:#fff;text-decoration:none;transition:border-color 0.2s;letter-spacing:0.5px;}
+.red-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* CTA */
+.cta-sec{background:var(--gold);padding:5rem 2.5rem;}
+.cta-inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem;}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:min(8vw,72px);color:var(--black);line-height:0.9;margin-bottom:1rem;}
+.cta-sub{font-size:15px;color:rgba(0,0,0,0.6);max-width:500px;line-height:1.75;font-weight:300;}
+.cta-actions{display:flex;flex-direction:column;gap:10px;min-width:220px;}
+.btn-black{background:var(--black);color:#fff;padding:15px 32px;border-radius:3px;font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;width:100%;transition:opacity 0.2s;}
+.btn-black:hover{opacity:0.8;}
+.btn-black-outline{background:transparent;color:var(--black);padding:14px 32px;border-radius:3px;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;border:0.5px solid rgba(0,0,0,0.3);font-family:'DM Sans',sans-serif;width:100%;}
+
+/* FOOTER */
+.footer{background:var(--black);border-top:0.5px solid var(--line-light);padding:2.5rem;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff;}
+.flogo em{font-style:normal;color:var(--gold);}
+.fcopy{font-size:11px;color:var(--text-dimmer);}
+.fback{font-size:11px;color:var(--text-dimmer);text-decoration:none;transition:color 0.2s;}
+.fback:hover{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-logo">SANSA<em>R</em>U</div>
+  <ul class="nav-menu">
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#djs">DJs</a></li>
+    <li><a href="#merch">Merch</a></li>
+    <li><a href="#salas">Para salas</a></li>
+  </ul>
+  <div class="nav-right">
+    <a class="nav-back" href="https://fiestopia.es">← Fiestopia</a>
+    <button class="nav-btn" onclick="window.open('https://pro.fourvenues.com/')">Entradas</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-media">
+    <!-- <video autoplay muted loop playsinline src="sansaru-hero.mp4"></video> -->
+    <img src="https://fiestopia.es/wp-content/uploads/2025/09/20191207_SANSARU-022.webp" alt="Sansaru On Tour">
+  </div>
+  <div class="hero-texture"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="hero-badge-text">Fiesta premium · Festival en sala · Valencia</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="l1">Sansaru</span>
+          <span class="l2">On Tour.</span>
+        </h1>
+        <p class="hero-sub"><strong>Llevamos la energía de los mejores festivales</strong> a donde tú quieras. Montaje impactante, DJs de primer nivel y un show audiovisual que convierte la noche en un evento inolvidable.</p>
+        <div class="hero-actions">
+          <button class="btn-gold" onclick="window.open('https://pro.fourvenues.com/')">Ver próximas fechas</button>
+          <button class="btn-ghost" onclick="document.getElementById('salas').scrollIntoView({behavior:'smooth'})">Para salas</button>
+        </div>
+      </div>
+      <div>
+        <div class="hero-stats">
+          <div class="hstats-grid">
+            <div class="hstat"><div class="hstat-n">10<em>+</em></div><div class="hstat-l">Años repartiendo felicidad</div></div>
+            <div class="hstat"><div class="hstat-n">9.5<em>k</em></div><div class="hstat-l">Seguidores en redes</div></div>
+            <div class="hstat"><div class="hstat-n">6</div><div class="hstat-l">DJs residentes propios</div></div>
+            <div class="hstat"><div class="hstat-n">1.5<em>k</em></div><div class="hstat-l">Aforo máximo</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ti bold">SANSARU ON TOUR</span><span class="ti">·</span>
+    <span class="ti">SUEL</span><span class="ti">·</span>
+    <span class="ti">DONOFRIO</span><span class="ti">·</span>
+    <span class="ti">JOSE RIPOLL</span><span class="ti">·</span>
+    <span class="ti">BUGANU</span><span class="ti">·</span>
+    <span class="ti">DAVID HOOD</span><span class="ti">·</span>
+    <span class="ti">NEREA DE TOLEDO</span><span class="ti">·</span>
+    <span class="ti bold">10 AÑOS DE HISTORIA</span><span class="ti">·</span>
+    <span class="ti">GANDIA · DÉNIA · VALENCIA · ALZIRA</span><span class="ti">·</span>
+    <span class="ti bold">SANSARU ON TOUR</span><span class="ti">·</span>
+    <span class="ti">SUEL</span><span class="ti">·</span>
+    <span class="ti">DONOFRIO</span><span class="ti">·</span>
+    <span class="ti">JOSE RIPOLL</span><span class="ti">·</span>
+    <span class="ti">BUGANU</span><span class="ti">·</span>
+    <span class="ti">DAVID HOOD</span><span class="ti">·</span>
+    <span class="ti">NEREA DE TOLEDO</span><span class="ti">·</span>
+    <span class="ti bold">10 AÑOS DE HISTORIA</span><span class="ti">·</span>
+    <span class="ti">GANDIA · DÉNIA · VALENCIA · ALZIRA</span><span class="ti">·</span>
+  </div>
+</div>
+
+<!-- QUÉ ES -->
+<div class="sec sec-border">
+  <div class="que-grid">
+    <div class="que-text">
+      <div class="eyebrow">Qué es Sansaru</div>
+      <h2 class="sec-title">Una experiencia.<br>No solo una <em>fiesta.</em></h2>
+      <p>Sansaru On Tour no es solo una fiesta — es una experiencia que transforma cualquier lugar en un auténtico espectáculo de música, luces y emoción.</p>
+      <p>Llevamos la energía de los mejores festivales a donde tú quieras, con un <strong>montaje impactante, DJs de primer nivel</strong> y un show audiovisual que convierte la noche en un evento inolvidable.</p>
+      <p>Con más de 10 años en la industria del entretenimiento, Sansaru ha revolucionado la forma de vivir la música en la Comunitat Valenciana.</p>
+    </div>
+    <div class="que-video">
+      <img src="https://fiestopia.es/wp-content/uploads/2025/09/4.webp" alt="Sansaru evento">
+      <div class="play-btn"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRÓXIMOS EVENTOS -->
+<div class="eventos-sec" id="eventos">
+  <div class="ev-eyebrow">Próximas fechas</div>
+  <h2 class="ev-title">Tu próxima <em>noche.</em></h2>
+  <div class="ev-grid">
+    <div class="ev-card big" onclick="window.open('https://pro.fourvenues.com/')">
+      <div class="ev-img">
+        <img src="https://fiestopia.es/wp-content/uploads/2025/09/4.webp" alt="Sansaru">
+        <div class="ev-badge-s">Sansaru On Tour</div>
+      </div>
+      <div class="ev-body">
+        <div class="ev-date">Sáb 26 Abr 2026 · 22:00h</div>
+        <div class="ev-name">Sansaru On Tour · Gandia</div>
+        <div class="ev-lugar">Nombre de la sala · Gandia</div>
+        <div class="ev-foot">
+          <div class="ev-price">15 € <span>entrada general</span></div>
+          <button class="ev-btn" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" onclick="window.open('https://pro.fourvenues.com/')">
+      <div class="ev-img">
+        <div class="ev-ph">SAN</div>
+        <div class="ev-badge-s">Sansaru On Tour</div>
+        <div class="ev-sold">Pocas entradas</div>
+      </div>
+      <div class="ev-body">
+        <div class="ev-date">Sáb 10 May 2026 · 22:00h</div>
+        <div class="ev-name">Sansaru On Tour · Dénia</div>
+        <div class="ev-lugar">Nombre de la sala · Dénia</div>
+        <div class="ev-foot">
+          <div class="ev-price">12 €</div>
+          <button class="ev-btn" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="ev-ver-todos" href="https://fiestopia.es/eventos">Ver todos los eventos →</a>
+</div>
+
+<!-- DJS -->
+<div class="djs-sec" id="djs">
+  <div class="eyebrow">Los artistas</div>
+  <h2 class="sec-title">Nuestros <em>DJs.</em></h2>
+  <div class="djs-grid">
+    <div class="dj-card">
+      <div class="dj-foto"><div class="dj-ph">SUEL</div></div>
+      <div class="dj-body"><div class="dj-name">Suel</div><div class="dj-rol">DJ Residente</div></div>
+    </div>
+    <div class="dj-card">
+      <div class="dj-foto"><div class="dj-ph">DON</div></div>
+      <div class="dj-body"><div class="dj-name">Donofrio</div><div class="dj-rol">DJ Residente</div></div>
+    </div>
+    <div class="dj-card">
+      <div class="dj-foto"><div class="dj-ph">JR</div></div>
+      <div class="dj-body"><div class="dj-name">Jose Ripoll</div><div class="dj-rol">DJ Residente</div></div>
+    </div>
+    <div class="dj-card">
+      <div class="dj-foto"><div class="dj-ph">BUG</div></div>
+      <div class="dj-body"><div class="dj-name">Buganu</div><div class="dj-rol">DJ Residente</div></div>
+    </div>
+    <div class="dj-card">
+      <div class="dj-foto"><div class="dj-ph">DH</div></div>
+      <div class="dj-body"><div class="dj-name">David Hood</div><div class="dj-rol">DJ Residente</div></div>
+    </div>
+    <div class="dj-card">
+      <div class="dj-foto"><div class="dj-ph">NT</div></div>
+      <div class="dj-body"><div class="dj-name">Nerea de Toledo</div><div class="dj-rol">DJ Residente</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MERCH -->
+<div class="merch-sec" id="merch">
+  <div class="ev-eyebrow">Tienda oficial</div>
+  <h2 class="merch-title">Lleva <em>Sansaru</em><br>contigo.</h2>
+  <div class="merch-grid">
+    <div class="merch-item">
+      <div class="merch-foto">
+        <img src="https://sansaru.es/wp-content/uploads/2025/02/Camiseta-1-e1740913642271-300x300.png" alt="Camiseta Sansaru Blanca">
+      </div>
+      <div class="merch-body">
+        <div class="merch-name">Camiseta Blanca Animal Print</div>
+        <div class="merch-price">15 €</div>
+        <a class="merch-btn" href="https://sansaru.es/producto/camiseta-sansaru-blanca-con-estampado-animal-print/" target="_blank">Ver producto →</a>
+      </div>
+    </div>
+    <div class="merch-item">
+      <div class="merch-foto">
+        <img src="https://sansaru.es/wp-content/uploads/2025/02/Camiseta-2-e1740913586487-300x300.png" alt="Camiseta Sansaru Negra">
+      </div>
+      <div class="merch-body">
+        <div class="merch-name">Camiseta Negra Animal Print</div>
+        <div class="merch-price">15 €</div>
+        <a class="merch-btn" href="https://sansaru.es/producto/camiseta-sansaru-negra-con-estampado-animal-print/" target="_blank">Ver producto →</a>
+      </div>
+    </div>
+    <div class="merch-item">
+      <div class="merch-foto">
+        <img src="https://sansaru.es/wp-content/uploads/2025/02/Gorra-1-300x300.png" alt="Gorra Sansaru">
+      </div>
+      <div class="merch-body">
+        <div class="merch-name">Gorra Sansaru</div>
+        <div class="merch-price">8 €</div>
+        <a class="merch-btn" href="https://sansaru.es/producto/gorra-de-tela-sansaru-con-logotipo-de-la-marca/" target="_blank">Ver producto →</a>
+      </div>
+    </div>
+    <div class="merch-item">
+      <div class="merch-foto">
+        <img src="https://sansaru.es/wp-content/uploads/2025/02/Totebag-1-300x300.png" alt="Bolsa Sansaru">
+      </div>
+      <div class="merch-body">
+        <div class="merch-name">Bolsa Animal Print Naranja</div>
+        <div class="merch-price">12 €</div>
+        <a class="merch-btn" href="https://sansaru.es" target="_blank">Ver tienda →</a>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;text-align:center;">
+    <a class="ev-ver-todos" style="color:var(--gold);" href="https://sansaru.es" target="_blank">Ver toda la tienda en sansaru.es →</a>
+  </div>
+</div>
+
+<!-- PARA SALAS -->
+<div class="salas-sec" id="salas">
+  <div class="salas-grid">
+    <div>
+      <div class="eyebrow">Para salas y promotores</div>
+      <h2 class="sec-title">¿Sansaru en<br>tu <em>sala?</em></h2>
+      <div class="salas-specs">
+        <div class="spec"><div class="spec-label">Aforo recomendado</div><div class="spec-val">300 – 1.500 pax</div></div>
+        <div class="spec"><div class="spec-label">Duración</div><div class="spec-val">5 – 6 horas</div></div>
+        <div class="spec"><div class="spec-label">Equipo</div><div class="spec-val">2 DJs + producción</div></div>
+        <div class="spec"><div class="spec-label">Rider</div><div class="spec-val">PDF disponible</div></div>
+        <div class="spec"><div class="spec-label">Horario</div><div class="spec-val">Noche / madrugada</div></div>
+        <div class="spec"><div class="spec-label">Público</div><div class="spec-val">18 – 35 años</div></div>
+      </div>
+    </div>
+    <div class="salas-text">
+      <p>Sansaru On Tour es el formato más consolidado del grupo. Con más de 10 años de historia y una comunidad propia de <strong>más de 9.500 seguidores</strong>, llevamos público fiel a cada sala donde actuamos.</p>
+      <p>Producción completa propia — sonido, luces, montaje y DJs. <strong>Tú solo abres las puertas.</strong></p>
+      <p>Contacta y en 48 horas tienes rider técnico completo y disponibilidad de fechas.</p>
+      <div class="salas-actions">
+        <button class="btn-gold" onclick="window.location.href='https://fiestopia.es/para-salas'">Ver formatos B2B</button>
+        <button class="btn-ghost" onclick="window.open('https://wa.me/34645714101')">WhatsApp directo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REDES -->
+<div class="redes-sec">
+  <div class="redes-inner">
+    <div>
+      <h2 class="redes-title">Síguenos en <em>redes.</em></h2>
+    </div>
+    <div class="redes-links">
+      <a class="red-btn" href="https://www.instagram.com/sansaruontour/" target="_blank">Instagram @sansaruontour</a>
+      <a class="red-btn" href="https://www.facebook.com/sansaruontour" target="_blank">Facebook</a>
+      <a class="red-btn" href="https://www.youtube.com/@sansaru7694" target="_blank">YouTube</a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-sec">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">¿Te vienes a<br>la próxima?</h2>
+      <p class="cta-sub">Consulta el calendario de eventos y compra tu entrada con antelación. Las mejores fechas se agotan rápido.</p>
+    </div>
+    <div class="cta-actions">
+      <button class="btn-black" onclick="window.open('https://pro.fourvenues.com/')">Comprar entradas</button>
+      <button class="btn-black-outline" onclick="window.open('https://wa.me/34645714101')">WhatsApp · 645 714 101</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="flogo">SANSA<em>R</em>U</div>
+    <div class="fcopy">© 2026 Fiestopia S.L. · Todos los derechos reservados</div>
+    <a class="fback" href="https://fiestopia.es">← Volver a Fiestopia</a>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+</script>
+</body>
+</html>

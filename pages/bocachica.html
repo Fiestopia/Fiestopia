@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bocachica · Fiestopia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--warm:#c8a882;--cream:#f5f0e8;--dark:#1a1208;--mid:#2d2010;--text-muted:rgba(26,18,8,0.55);}
+body{font-family:'DM Sans',sans-serif;color:var(--dark);background:var(--cream);overflow-x:hidden;}
+
+/* NAV */
+.bc-nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2rem;position:absolute;top:0;left:0;right:0;z-index:20;}
+.bc-nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;letter-spacing:1px;color:#fff;}
+.bc-nav-back{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);text-decoration:none;}
+.bc-nav-cta{font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 18px;border-radius:2px;background:var(--warm);color:#fff;font-weight:400;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+
+/* HERO */
+.bc-hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;background:var(--mid);}
+.bc-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.6;}
+.bc-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,18,8,0.2) 0%,rgba(26,18,8,0.0) 30%,rgba(26,18,8,0.7) 70%,var(--dark) 100%);z-index:1;}
+.bc-hero-placeholder{position:absolute;inset:0;background:linear-gradient(135deg,#2d2010 0%,#1a1208 100%);display:flex;align-items:center;justify-content:center;z-index:0;}
+.bc-hero-placeholder-text{font-family:'Playfair Display',serif;font-size:120px;font-style:italic;color:rgba(200,168,130,0.06);letter-spacing:-4px;pointer-events:none;user-select:none;}
+.bc-hero-content{position:relative;z-index:3;padding:0 2rem 5rem;width:100%;max-width:800px;}
+.bc-hero-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);margin-bottom:2rem;}
+.bc-hero-title{font-family:'Playfair Display',serif;font-size:88px;line-height:0.92;font-weight:400;color:#fff;margin-bottom:2rem;}
+.bc-hero-title em{font-style:italic;color:var(--warm);}
+.bc-hero-quote{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,0.55);line-height:1.6;max-width:520px;margin-bottom:2.5rem;border-left:2px solid var(--warm);padding-left:1.25rem;}
+.bc-hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.bc-btn-primary{background:var(--warm);color:#fff;padding:14px 28px;border-radius:2px;font-size:13px;font-weight:400;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+.bc-btn-ghost{background:transparent;color:rgba(255,255,255,0.7);padding:14px 28px;border-radius:2px;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;border:0.5px solid rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;}
+
+/* TICKER */
+.bc-ticker{background:var(--warm);padding:0.75rem 0;overflow:hidden;}
+.bc-ticker-inner{display:flex;animation:ticker 25s linear infinite;white-space:nowrap;}
+.bc-ticker-text{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:#fff;padding:0 2rem;opacity:0.9;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* PRÓXIMAS FECHAS */
+.bc-upcoming{background:var(--dark);padding:3rem 2rem;border-bottom:0.5px solid rgba(200,168,130,0.15);}
+.bc-upcoming-inner{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+.bc-upcoming-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);white-space:nowrap;}
+.bc-upcoming-events{display:flex;gap:1.5rem;flex:1;flex-wrap:wrap;}
+.bc-upcoming-event{display:flex;align-items:center;gap:14px;padding:0.875rem 1.25rem;border:0.5px solid rgba(200,168,130,0.2);border-radius:2px;cursor:pointer;transition:border-color 0.2s;}
+.bc-upcoming-event:hover{border-color:var(--warm);}
+.bc-upcoming-date{font-family:'Playfair Display',serif;font-size:30px;font-style:italic;color:var(--warm);line-height:1;text-align:center;min-width:44px;}
+.bc-upcoming-date span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.35);font-style:normal;}
+.bc-upcoming-info{font-size:13px;color:#fff;}
+.bc-upcoming-sala{font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px;}
+.bc-upcoming-cta{background:var(--warm);color:#fff;padding:10px 20px;border-radius:2px;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+
+/* SECCIONES */
+.bc-section{padding:5rem 2rem;border-bottom:0.5px solid rgba(26,18,8,0.08);}
+.bc-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--warm);margin-bottom:1rem;}
+.bc-section-title{font-family:'Playfair Display',serif;font-size:52px;font-weight:400;line-height:1.05;margin-bottom:2rem;color:var(--dark);}
+.bc-section-title em{font-style:italic;color:var(--warm);}
+
+/* HISTORIA */
+.bc-historia-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.bc-historia-text p{font-size:15px;color:var(--text-muted);line-height:1.9;margin-bottom:1.5rem;}
+.bc-historia-text p strong{color:var(--dark);font-weight:500;}
+.bc-historia-text .bc-cita{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--dark);line-height:1.6;border-left:2px solid var(--warm);padding-left:1.5rem;margin:2rem 0;}
+.bc-historia-foto{aspect-ratio:3/4;background:#e8e0d0;border-radius:2px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;}
+.bc-historia-foto-placeholder{font-size:11px;color:rgba(26,18,8,0.25);letter-spacing:1px;text-transform:uppercase;}
+.bc-historia-foto img{width:100%;height:100%;object-fit:cover;}
+
+/* QUÉ SUENA */
+.bc-musica-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(26,18,8,0.08);border:0.5px solid rgba(26,18,8,0.08);margin-top:0;}
+.bc-musica-item{background:var(--cream);padding:2rem 1.5rem;}
+.bc-musica-icon{width:32px;height:2px;background:var(--warm);margin-bottom:1.25rem;}
+.bc-musica-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:var(--dark);margin-bottom:0.5rem;}
+.bc-musica-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+.bc-musica-artistas{font-size:11px;color:var(--warm);margin-top:0.75rem;letter-spacing:0.3px;}
+
+/* VIDEO CENTRAL */
+.bc-video-wrap{background:var(--dark);padding:5rem 2rem;border-bottom:0.5px solid rgba(200,168,130,0.1);}
+.bc-video-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.bc-video-box{aspect-ratio:16/9;background:#2d2010;border-radius:2px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border:0.5px solid rgba(200,168,130,0.15);}
+.bc-play-btn{width:60px;height:60px;border-radius:50%;border:1.5px solid var(--warm);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;}
+.bc-play-btn:hover{background:rgba(200,168,130,0.15);}
+.bc-play-btn::after{content:'';border-style:solid;border-width:9px 0 9px 16px;border-color:transparent transparent transparent var(--warm);margin-left:4px;}
+.bc-video-label{position:absolute;bottom:14px;left:14px;font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;}
+.bc-video-text .bc-section-title{color:#fff;margin-bottom:1.5rem;}
+.bc-video-text p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:1.25rem;}
+.bc-video-text strong{color:var(--warm);}
+
+/* PARA QUIÉN */
+.bc-paraquien{display:grid;grid-template-columns:1fr 1fr;gap:0;background:rgba(26,18,8,0.04);border:0.5px solid rgba(26,18,8,0.08);}
+.bc-paraquien-item{padding:2rem 1.75rem;border-right:0.5px solid rgba(26,18,8,0.08);display:flex;gap:14px;align-items:flex-start;}
+.bc-paraquien-item:last-child{border-right:none;}
+.bc-paraquien-dot{width:6px;height:6px;border-radius:50%;background:var(--warm);margin-top:6px;flex-shrink:0;}
+.bc-paraquien-text{font-size:14px;color:var(--text-muted);line-height:1.6;}
+
+/* GALERÍA */
+.bc-galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:220px 220px;gap:3px;}
+.bc-gal-item{background:#e8e0d0;overflow:hidden;position:relative;cursor:pointer;}
+.bc-gal-item.big{grid-column:span 2;grid-row:span 2;}
+.bc-gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.bc-gal-item:hover img{transform:scale(1.04);}
+.bc-gal-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(26,18,8,0.2);letter-spacing:1px;text-transform:uppercase;}
+
+/* PARA SALAS */
+.bc-salas{background:var(--dark);padding:5rem 2rem;}
+.bc-salas-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.bc-salas-specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(200,168,130,0.1);border:0.5px solid rgba(200,168,130,0.1);margin-top:2rem;}
+.bc-spec{background:var(--dark);padding:1.25rem;}
+.bc-spec-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.3);margin-bottom:6px;}
+.bc-spec-val{font-size:14px;font-weight:500;color:#fff;}
+.bc-salas-right p{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:1.25rem;}
+.bc-salas-right strong{color:var(--warm);}
+.bc-salas-actions{display:flex;gap:10px;margin-top:2rem;flex-wrap:wrap;}
+.bc-btn-primary-dark{background:var(--warm);color:#fff;padding:13px 26px;border-radius:2px;font-size:12px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+.bc-btn-ghost-dark{background:transparent;color:rgba(255,255,255,0.5);padding:13px 26px;border-radius:2px;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;border:0.5px solid rgba(255,255,255,0.15);font-family:'DM Sans',sans-serif;}
+.bc-salas-title{font-family:'Playfair Display',serif;font-size:52px;font-weight:400;line-height:1.05;margin-bottom:0;color:#fff;}
+.bc-salas-title em{font-style:italic;color:var(--warm);}
+
+/* CTA FINAL */
+.bc-cta-final{padding:6rem 2rem;text-align:center;background:var(--cream);position:relative;overflow:hidden;}
+.bc-cta-bg-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:280px;font-style:italic;color:rgba(200,168,130,0.06);pointer-events:none;letter-spacing:-8px;line-height:1;}
+.bc-cta-final-title{font-family:'Playfair Display',serif;font-size:64px;font-weight:400;color:var(--dark);line-height:0.95;margin-bottom:1.5rem;position:relative;}
+.bc-cta-final-title em{font-style:italic;color:var(--warm);display:block;}
+.bc-cta-final-sub{font-size:15px;color:var(--text-muted);max-width:460px;margin:0 auto 2.5rem;line-height:1.8;}
+.bc-cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
+
+/* FOOTER */
+.bc-footer{padding:2rem;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid rgba(26,18,8,0.08);background:var(--cream);}
+.bc-footer-logo{font-family:'Playfair Display',serif;font-size:14px;font-style:italic;color:rgba(26,18,8,0.3);}
+.bc-footer-brand{font-size:12px;color:rgba(26,18,8,0.25);letter-spacing:0.5px;}
+</style>
+</head>
+<body>
+
+<nav class="bc-nav">
+  <div class="bc-nav-logo">Bocachica</div>
+  <a class="bc-nav-back" href="/">← Fiestopia</a>
+  <button class="bc-nav-cta">Próximas fechas</button>
+</nav>
+
+<!-- HERO -->
+<div class="bc-hero">
+  <!-- REEMPLAZA CON TU VÍDEO: -->
+  <!-- <video autoplay muted loop playsinline src="tu-video-bocachica.mp4"></video> -->
+  <div class="bc-hero-placeholder">
+    <div class="bc-hero-placeholder-text">BC</div>
+  </div>
+  <div class="bc-hero-overlay"></div>
+  <div class="bc-hero-content">
+    <div class="bc-hero-eyebrow">Pop español · Indie · Tardeo · Gandia · Valencia</div>
+    <h1 class="bc-hero-title">No se busca.<br><em>Se recuerda.</em></h1>
+    <p class="bc-hero-quote">Una fiesta nostálgica pero fresca, como ese disco que guardas y siempre suena bien.</p>
+    <div class="bc-hero-actions">
+      <button class="bc-btn-primary">Ver próximas fechas</button>
+      <button class="bc-btn-ghost">¿Qué es Bocachica?</button>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="bc-ticker">
+  <div class="bc-ticker-inner">
+    <span class="bc-ticker-text">Vetusta Morla</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Los Planetas</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Fangoria</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Nacho Vegas</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">El Columpio Asesino</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Supersubmarina</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Café Quijano</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">La Oreja de Van Gogh</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Amaral</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Vetusta Morla</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Los Planetas</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Fangoria</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Nacho Vegas</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">El Columpio Asesino</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Supersubmarina</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Café Quijano</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">La Oreja de Van Gogh</span><span class="bc-ticker-text">·</span>
+    <span class="bc-ticker-text">Amaral</span><span class="bc-ticker-text">·</span>
+  </div>
+</div>
+
+<!-- PRÓXIMAS FECHAS -->
+<div class="bc-upcoming">
+  <div class="bc-upcoming-inner">
+    <div class="bc-upcoming-label">Próximas fechas</div>
+    <div class="bc-upcoming-events">
+      <div class="bc-upcoming-event">
+        <div class="bc-upcoming-date">18<span>abr</span></div>
+        <div>
+          <div class="bc-upcoming-info">Bocachica · Abril</div>
+          <div class="bc-upcoming-sala">Nombre de la sala · Valencia · 19:00h</div>
+        </div>
+      </div>
+      <div class="bc-upcoming-event">
+        <div class="bc-upcoming-date">23<span>may</span></div>
+        <div>
+          <div class="bc-upcoming-info">Bocachica · Mayo</div>
+          <div class="bc-upcoming-sala">Nombre de la sala · Gandia · 19:00h</div>
+        </div>
+      </div>
+      <div class="bc-upcoming-event">
+        <div class="bc-upcoming-date">+2<span>más</span></div>
+        <div>
+          <div class="bc-upcoming-info">Ver calendario completo</div>
+          <div class="bc-upcoming-sala">Todas las fechas</div>
+        </div>
+      </div>
+    </div>
+    <button class="bc-upcoming-cta">Entradas →</button>
+  </div>
+</div>
+
+<!-- HISTORIA -->
+<div class="bc-section">
+  <div class="bc-historia-grid">
+    <div class="bc-historia-text">
+      <div class="bc-eyebrow">El origen</div>
+      <h2 class="bc-section-title">Bocachica<br>nació de <em>eso.</em></h2>
+      <p>De las canciones que se quedaron dentro. De los veranos que quisimos repetir. De los inviernos en los que nos prometimos volver a salir.</p>
+      <div class="bc-cita">"No hay mapa que la ubique, pero todos sabemos llegar. Porque Bocachica no se busca. Se recuerda. Y se repite."</div>
+      <p>Una fiesta nostálgica pero fresca, donde el <strong>pop español, el indie elegante</strong> y los temazos que no fallan hacen que todo el mundo cante, baile y recuerde.</p>
+      <p>Para quienes recuerdan cuando la música era algo más que un fondo sonoro. Para los que guardan ese disco que siempre suena bien.</p>
+    </div>
+    <div class="bc-historia-foto">
+      <div class="bc-historia-foto-placeholder">foto · ambiente bocachica</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUÉ SUENA -->
+<div class="bc-section" style="padding-top:0;">
+  <div class="bc-eyebrow">La música</div>
+  <h2 class="bc-section-title">Lo que <em>suena.</em></h2>
+  <div class="bc-musica-grid">
+    <div class="bc-musica-item">
+      <div class="bc-musica-icon"></div>
+      <div class="bc-musica-name">Pop español</div>
+      <div class="bc-musica-desc">Los temazos que te saben de memoria. Los que cantabas en el coche, en la ducha, en cualquier sitio.</div>
+      <div class="bc-musica-artistas">La Oreja de Van Gogh · Amaral · Fangoria · Café Quijano</div>
+    </div>
+    <div class="bc-musica-item">
+      <div class="bc-musica-icon"></div>
+      <div class="bc-musica-name">Indie elegante</div>
+      <div class="bc-musica-desc">El indie que envejeció bien. Letras que todavía dicen algo, sonido que no ha perdido un gramo de fuerza.</div>
+      <div class="bc-musica-artistas">Vetusta Morla · Los Planetas · Nacho Vegas · El Columpio</div>
+    </div>
+    <div class="bc-musica-item">
+      <div class="bc-musica-icon"></div>
+      <div class="bc-musica-name">Temazos que no fallan</div>
+      <div class="bc-musica-desc">Los que siempre funcionan. Los que vacían la barra y llenan la pista al mismo tiempo.</div>
+      <div class="bc-musica-artistas">Supersubmarina · M-Clan · Pereza · Lori Meyers</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div class="bc-video-wrap">
+  <div class="bc-video-inner">
+    <div class="bc-video-box">
+      <div class="bc-play-btn"></div>
+      <div class="bc-video-label">Así es una noche Bocachica</div>
+    </div>
+    <div class="bc-video-text">
+      <div class="bc-eyebrow" style="color:var(--warm);">La experiencia</div>
+      <h2 class="bc-section-title" style="color:#fff;font-size:44px;">Un vermut al atardecer.<br>Una copa con <em style="color:var(--warm);">los de siempre.</em></h2>
+      <p>Bocachica no es una discoteca. Es un reencuentro. Con la música, con la gente, con esa versión tuya que salía más.</p>
+      <p><strong>Sin algoritmos, sin modas efímeras.</strong> Solo música que suena a reencuentro, en un espacio donde la copa en mano es todavía un ritual.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PARA QUIÉN -->
+<div class="bc-section">
+  <div class="bc-eyebrow">¿Esto es para ti?</div>
+  <h2 class="bc-section-title">Bocachica es para <em>los que...</em></h2>
+  <div class="bc-paraquien">
+    <div class="bc-paraquien-item">
+      <div class="bc-paraquien-dot"></div>
+      <div class="bc-paraquien-text">Recuerdan cuando un tema podía cambiarte el verano entero.</div>
+    </div>
+    <div class="bc-paraquien-item">
+      <div class="bc-paraquien-dot"></div>
+      <div class="bc-paraquien-text">Guardan ese disco que siempre suena bien aunque haga años que no sale en la radio.</div>
+    </div>
+    <div class="bc-paraquien-item">
+      <div class="bc-paraquien-dot"></div>
+      <div class="bc-paraquien-text">Quieren salir pero no encajan en la oferta habitual.</div>
+    </div>
+    <div class="bc-paraquien-item">
+      <div class="bc-paraquien-dot"></div>
+      <div class="bc-paraquien-text">Saben que el mejor plan empieza con buena música y termina cuando quiere.</div>
+    </div>
+  </div>
+</div>
+
+<!-- GALERÍA -->
+<div class="bc-section" style="padding-bottom:0;">
+  <div class="bc-eyebrow">La atmósfera</div>
+  <h2 class="bc-section-title" style="margin-bottom:2rem;">Así se <em>vive.</em></h2>
+</div>
+<div class="bc-galeria">
+  <div class="bc-gal-item big"><div class="bc-gal-placeholder">foto principal · ambiente</div></div>
+  <div class="bc-gal-item"><div class="bc-gal-placeholder">foto público</div></div>
+  <div class="bc-gal-item"><div class="bc-gal-placeholder">foto barra</div></div>
+  <div class="bc-gal-item"><div class="bc-gal-placeholder">foto dj</div></div>
+  <div class="bc-gal-item"><div class="bc-gal-placeholder">foto detalle</div></div>
+</div>
+
+<!-- PARA SALAS -->
+<div class="bc-salas">
+  <div class="bc-salas-grid">
+    <div>
+      <div class="bc-eyebrow" style="color:var(--warm);">Para salas y promotores</div>
+      <h2 class="bc-salas-title">¿Bocachica<br>en tu <em>sala?</em></h2>
+      <div class="bc-salas-specs">
+        <div class="bc-spec"><div class="bc-spec-label">Aforo recomendado</div><div class="bc-spec-val">100 – 400 pax</div></div>
+        <div class="bc-spec"><div class="bc-spec-label">Horario</div><div class="bc-spec-val">Tardeo o noche</div></div>
+        <div class="bc-spec"><div class="bc-spec-label">Duración</div><div class="bc-spec-val">4 horas</div></div>
+        <div class="bc-spec"><div class="bc-spec-label">Equipo</div><div class="bc-spec-val">1 DJ residente</div></div>
+        <div class="bc-spec"><div class="bc-spec-label">Público</div><div class="bc-spec-val">35 – 55 años</div></div>
+        <div class="bc-spec"><div class="bc-spec-label">Rider</div><div class="bc-spec-val">PDF disponible</div></div>
+      </div>
+    </div>
+    <div class="bc-salas-right">
+      <p>Un formato de autor para el público adulto que no encuentra su sitio en la oferta habitual. Pop español e indie elegante en un ambiente íntimo.</p>
+      <p>Funciona especialmente bien en <strong>salas con barra</strong>, terraza o espacio de tardeo donde la conversación y la música comparten protagonismo.</p>
+      <p>Público de alto poder adquisitivo, fiel y agradecido. El tipo de cliente que vuelve.</p>
+      <div class="bc-salas-actions">
+        <button class="bc-btn-primary-dark">Hablemos</button>
+        <button class="bc-btn-ghost-dark">Descargar rider</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="bc-cta-final">
+  <div class="bc-cta-bg-text">BC</div>
+  <h2 class="bc-cta-final-title">
+    La pista te<br>
+    <em>está esperando.</em>
+  </h2>
+  <p class="bc-cta-final-sub">Busca la próxima fecha y hazte con tu entrada. Porque Bocachica no se busca — se recuerda. Y se repite.</p>
+  <div class="bc-cta-actions">
+    <button class="bc-btn-primary">Comprar entradas</button>
+    <button style="background:transparent;color:var(--text-muted);padding:14px 28px;border-radius:2px;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;border:0.5px solid rgba(26,18,8,0.2);font-family:'DM Sans',sans-serif;">Ver calendario</button>
+  </div>
+</div>
+
+<div class="bc-footer">
+  <div class="bc-footer-logo">Bocachica · Fiestopia</div>
+  <div class="bc-footer-brand">by Fiestopia · 645 714 101</div>
+</div>
+
+</body>
+</html>

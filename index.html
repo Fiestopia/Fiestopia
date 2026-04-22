@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiestopia · Grupo de entretenimiento · Valencia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0A0A0A;
+  --black2:#111111;
+  --black3:#1A1A1A;
+  --white:#FFFFFF;
+  --off-white:#F5F4F0;
+  --light:#ECECEA;
+  --gold:#C9A84C;
+  --gold2:#E2BC6A;
+  --gold-dim:rgba(201,168,76,0.15);
+  --text-dark:#1A1A1A;
+  --text-mid:#555550;
+  --text-light:rgba(255,255,255,0.55);
+  --text-dimmer:rgba(255,255,255,0.25);
+  --line-dark:rgba(0,0,0,0.08);
+  --line-light:rgba(255,255,255,0.08);
+  --line-light2:rgba(255,255,255,0.14);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden;}
+::selection{background:var(--gold);color:#fff;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* ─── NAV ─── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;transition:all 0.3s;}
+.nav.dark{background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--line-light2);}
+.nav.light{background:rgba(245,244,240,0.96);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--line-dark);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;}
+.nav.dark .nav-logo{color:var(--white);}
+.nav.light .nav-logo{color:var(--black);}
+.nav-logo em{font-style:normal;color:var(--gold);}
+.nav-menu{display:flex;gap:2.5rem;list-style:none;}
+.nav-menu a{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;transition:color 0.2s;font-weight:400;}
+.nav.dark .nav-menu a{color:var(--text-light);}
+.nav.dark .nav-menu a:hover{color:var(--white);}
+.nav.light .nav-menu a{color:var(--text-mid);}
+.nav.light .nav-menu a:hover{color:var(--black);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-tel{font-size:11px;letter-spacing:0.3px;}
+.nav.dark .nav-tel{color:var(--text-dimmer);}
+.nav.light .nav-tel{color:var(--text-mid);}
+.nav-btn{padding:9px 22px;border-radius:3px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;background:var(--gold);color:var(--black);}
+.nav-btn:hover{opacity:0.85;}
+
+/* ─── HERO — FONDO OSCURO ─── */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--black);}
+.hero-video{position:absolute;inset:0;}
+.hero-video video{width:100%;height:100%;object-fit:cover;opacity:0.4;}
+.hero-placeholder{position:absolute;inset:0;background:var(--black);}
+/* Textura sutil */
+.hero-texture{position:absolute;inset:0;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.6) 0%,rgba(10,10,10,0) 35%,rgba(10,10,10,0.6) 65%,var(--black) 100%);}
+
+.hero-content{position:relative;z-index:2;padding:0 2.5rem 5rem;}
+.hero-inner{display:grid;grid-template-columns:1fr 400px;gap:3rem;align-items:flex-end;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:2.5rem;}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero-badge-text{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-light);}
+.hero-title{font-family:'Bebas Neue',sans-serif;line-height:0.88;letter-spacing:0.5px;margin-bottom:2rem;}
+.hero-title .l1{display:block;font-size:min(12vw,120px);color:var(--white);}
+.hero-title .l2{display:block;font-size:min(12vw,120px);color:var(--gold);}
+.hero-title .l3{display:block;font-size:min(12vw,120px);color:var(--white);}
+.hero-sub{font-size:15px;color:var(--text-light);line-height:1.8;max-width:500px;margin-bottom:2.5rem;font-weight:300;}
+.hero-sub strong{color:rgba(255,255,255,0.85);font-weight:400;}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--black);padding:14px 28px;border-radius:3px;font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.btn-gold:hover{background:var(--gold2);}
+.btn-ghost-light{background:transparent;color:rgba(255,255,255,0.7);padding:14px 28px;border-radius:3px;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;border:0.5px solid rgba(255,255,255,0.2);font-family:'DM Sans',sans-serif;transition:border-color 0.2s;}
+.btn-ghost-light:hover{border-color:rgba(255,255,255,0.45);}
+
+/* Stats hero */
+.hero-right{}
+.hero-stats-panel{background:rgba(255,255,255,0.04);border:0.5px solid var(--line-light2);border-radius:4px;overflow:hidden;}
+.hstats-grid{display:grid;grid-template-columns:1fr 1fr;}
+.hstat{padding:1.75rem 1.5rem;border-right:0.5px solid var(--line-light);border-bottom:0.5px solid var(--line-light);}
+.hstat:nth-child(2){border-right:none;}
+.hstat:nth-child(3){border-bottom:none;border-right:0.5px solid var(--line-light);}
+.hstat:nth-child(4){border-bottom:none;border-right:none;}
+.hstat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--white);line-height:1;margin-bottom:4px;}
+.hstat-n em{color:var(--gold);font-style:normal;}
+.hstat-l{font-size:12px;color:var(--text-light);line-height:1.4;font-weight:300;}
+.hero-next{padding:1rem 1.5rem;border-top:0.5px solid var(--line-light);display:flex;align-items:center;gap:10px;}
+.hero-next-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.hero-next-text{font-size:11px;color:var(--text-dimmer);letter-spacing:0.5px;}
+.hero-next-date{margin-left:auto;font-size:11px;color:var(--gold);font-weight:500;}
+
+/* ─── TICKER — DORADO ─── */
+.ticker{overflow:hidden;background:var(--gold);padding:0.875rem 0;}
+.ticker-track{display:flex;animation:scroll 32s linear infinite;white-space:nowrap;}
+.ti{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;color:rgba(10,10,10,0.55);padding:0 2rem;}
+.ti.bold{color:var(--black);font-weight:900;}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SECCIÓN BLANCA — SOBRE NOSOTROS ─── */
+.sobre{background:var(--white);padding:7rem 2.5rem;}
+.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.sobre-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.sobre-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+.sobre-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--black);line-height:0.92;margin-bottom:2rem;}
+.sobre-title em{font-style:normal;color:var(--gold);}
+.sobre-text p{font-size:15px;color:var(--text-mid);line-height:1.85;margin-bottom:1.25rem;font-weight:300;}
+.sobre-text p strong{color:var(--text-dark);font-weight:500;}
+.sobre-pilares{margin-top:2.5rem;display:flex;flex-direction:column;gap:0;}
+.pilar{display:flex;align-items:flex-start;gap:1.25rem;padding:1.25rem 0;border-bottom:0.5px solid var(--line-dark);}
+.pilar:first-child{border-top:0.5px solid var(--line-dark);}
+.pilar-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;min-width:32px;}
+.pilar-title{font-size:14px;font-weight:500;color:var(--text-dark);margin-bottom:3px;}
+.pilar-text{font-size:13px;color:var(--text-mid);line-height:1.6;font-weight:300;}
+.sobre-foto{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;aspect-ratio:1;}
+.sfoto{background:var(--light);overflow:hidden;border-radius:2px;}
+.sfoto img{width:100%;height:100%;object-fit:cover;}
+.sfoto.big{grid-row:span 2;}
+.sfoto-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(0,0,0,0.2);letter-spacing:1px;text-transform:uppercase;}
+
+/* ─── SECCIÓN NEGRA — MARCAS ─── */
+.marcas{background:var(--black);padding:7rem 2.5rem;}
+.marcas-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;}
+.sec-eyebrow-dark{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.sec-eyebrow-dark::before{content:'';width:12px;height:1px;background:var(--gold);}
+.sec-h2-dark{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--white);line-height:0.92;}
+.sec-h2-dark em{font-style:normal;color:var(--gold);}
+.marcas-link{font-size:11px;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;text-decoration:none;transition:color 0.2s;}
+.marcas-link:hover{color:var(--white);}
+
+/* Grid marcas */
+.mgrid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:auto;gap:2px;background:var(--line-light);}
+.mc{position:relative;overflow:hidden;cursor:pointer;background:var(--black2);}
+.mc-a{grid-column:1/6;min-height:500px;}
+.mc-b{grid-column:6/9;min-height:246px;}
+.mc-c{grid-column:9/13;min-height:246px;}
+.mc-d{grid-column:6/13;min-height:246px;}
+.mc-e{grid-column:1/13;min-height:72px;display:flex;align-items:center;background:transparent;border:0.5px solid var(--line-light);padding:1.5rem 2rem;gap:2rem;opacity:0.5;transition:opacity 0.2s;}
+.mc-e:hover{opacity:0.8;}
+.mc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;transition:opacity 0.45s,transform 0.55s;}
+.mc:hover .mc-img{opacity:0.5;transform:scale(1.03);}
+.mc-color{position:absolute;inset:0;transition:opacity 0.3s;opacity:0.08;}
+.mc:hover .mc-color{opacity:0.15;}
+.mc-grad{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,0.96) 0%,rgba(10,10,10,0.2) 65%,transparent 100%);}
+.mc-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+.mc-ph-t{font-family:'Bebas Neue',sans-serif;font-size:100px;opacity:0.04;letter-spacing:4px;color:var(--white);}
+.mc-a .mc-ph-t{font-size:180px;}
+.mc-body{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;}
+.mc-accent{width:24px;height:2px;border-radius:1px;margin-bottom:1rem;}
+.mc-name{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:0.5px;color:var(--white);line-height:1;margin-bottom:4px;}
+.mc-a .mc-name{font-size:48px;}
+.mc-tag{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.875rem;}
+.mc-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:1.25rem;font-weight:300;}
+.mc-pills{display:flex;gap:5px;flex-wrap:wrap;}
+.mc-pill{font-size:10px;padding:3px 9px;border-radius:100px;border:0.5px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.35);}
+.mc-arrow{position:absolute;top:1.5rem;right:1.5rem;z-index:3;width:34px;height:34px;border-radius:50%;border:0.5px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-light);transition:all 0.2s;}
+.mc:hover .mc-arrow{background:var(--gold);border-color:var(--gold);color:var(--black);}
+/* Rainbow bar */
+.mc-e-rainbow{width:60px;height:2px;background:linear-gradient(90deg,#E24B4A,#F5A623,#27AE60,#2980B9,#8E44AD);border-radius:1px;flex-shrink:0;}
+.mc-e-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);white-space:nowrap;}
+.mc-e-tag{font-size:10px;color:var(--text-dimmer);letter-spacing:1px;text-transform:uppercase;}
+.mc-e-spacer{flex:1;}
+.mc-e-pill{font-size:10px;padding:4px 12px;border-radius:100px;border:0.5px solid rgba(255,255,255,0.1);color:var(--text-light);}
+
+/* ─── SECCIÓN CLARA — EVENTOS ─── */
+.eventos{background:var(--off-white);padding:7rem 2.5rem;}
+.ev-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;}
+.sec-eyebrow-light{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.sec-eyebrow-light::before{content:'';width:12px;height:1px;background:var(--gold);}
+.sec-h2-light{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--black);line-height:0.92;}
+.sec-h2-light em{font-style:normal;color:var(--gold);}
+.ev-ver{font-size:11px;color:var(--text-mid);text-transform:uppercase;letter-spacing:1px;text-decoration:none;transition:color 0.2s;}
+.ev-ver:hover{color:var(--black);}
+.ev-tabs{display:flex;gap:6px;margin-bottom:2.5rem;flex-wrap:wrap;}
+.ev-tab{font-size:11px;padding:7px 16px;border-radius:3px;border:0.5px solid rgba(0,0,0,0.12);color:var(--text-mid);cursor:pointer;transition:all 0.15s;background:transparent;font-family:'DM Sans',sans-serif;letter-spacing:0.5px;}
+.ev-tab:hover{border-color:var(--black);color:var(--black);}
+.ev-tab.on{background:var(--black);color:var(--white);border-color:var(--black);}
+
+.egrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(0,0,0,0.06);border:0.5px solid rgba(0,0,0,0.06);}
+.ecard{background:var(--white);overflow:hidden;cursor:pointer;transition:background 0.2s;}
+.ecard:hover{background:var(--light);}
+.ecard.big{grid-column:span 2;}
+.ecard-img{width:100%;aspect-ratio:16/9;background:var(--light);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.ecard.big .ecard-img{aspect-ratio:21/9;}
+.ecard-ph{font-family:'Bebas Neue',sans-serif;font-size:48px;opacity:0.07;letter-spacing:2px;color:var(--black);}
+.ecard.big .ecard-ph{font-size:72px;}
+.ecard-badge{position:absolute;top:10px;left:10px;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px;font-weight:500;}
+.ecard-sold{position:absolute;top:10px;right:10px;font-size:9px;text-transform:uppercase;letter-spacing:0.5px;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,0.85);color:var(--text-mid);border:0.5px solid rgba(0,0,0,0.1);}
+.ecard-body{padding:1.25rem 1.5rem 1.5rem;}
+.ecard-date{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-bottom:6px;}
+.ecard-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:0.3px;color:var(--black);margin-bottom:3px;line-height:1.05;}
+.ecard.big .ecard-name{font-size:30px;}
+.ecard-lugar{font-size:12px;color:var(--text-mid);margin-bottom:1.25rem;}
+.ecard-foot{display:flex;align-items:center;justify-content:space-between;}
+.ecard-price{font-size:15px;font-weight:500;color:var(--black);}
+.ecard-price span{font-size:11px;font-weight:300;color:var(--text-mid);margin-left:2px;}
+.ecard-btn{padding:8px 18px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);transition:opacity 0.15s;}
+.ecard-btn:hover{opacity:0.75;}
+.ecard-btn.gold{background:var(--gold);color:var(--black);}
+
+.ev-nl{margin-top:2px;background:var(--white);border:0.5px solid rgba(0,0,0,0.08);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;}
+.ev-nl-t{font-size:14px;color:var(--text-mid);}
+.ev-nl-t strong{color:var(--black);font-weight:500;}
+.ev-nl-f{display:flex;gap:8px;}
+.ev-nl-f input{background:var(--off-white);border:0.5px solid rgba(0,0,0,0.12);border-radius:3px;padding:10px 16px;font-size:13px;color:var(--black);font-family:'DM Sans',sans-serif;outline:none;width:240px;}
+.ev-nl-f input:focus{border-color:var(--gold);}
+.ev-nl-f input::placeholder{color:var(--text-mid);}
+.ev-nl-f button{background:var(--gold);color:var(--black);padding:10px 20px;border-radius:3px;font-size:11px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;}
+
+/* ─── SECCIÓN NEGRA — AUDIENCIAS ─── */
+.quien{background:var(--black);padding:7rem 2.5rem;}
+.quien-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-light);margin-top:4rem;}
+.qcard{background:var(--black2);padding:3rem 2.5rem;transition:background 0.2s;position:relative;}
+.qcard:hover{background:var(--black3);}
+.qcard-line{position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background 0.3s;}
+.qcard:hover .qcard-line{background:var(--gold);}
+.qcard-n{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--line-light2);line-height:1;margin-bottom:1.5rem;}
+.qcard-title{font-size:19px;font-weight:500;color:var(--white);margin-bottom:1rem;}
+.qcard-text{font-size:14px;color:var(--text-light);line-height:1.75;margin-bottom:2rem;font-weight:300;}
+.qcard-link{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap 0.2s;}
+.qcard:hover .qcard-link{gap:10px;}
+
+/* ─── SECCIÓN BLANCA — NÚMEROS ─── */
+.nums{background:var(--white);padding:5rem 2.5rem;border-top:0.5px solid var(--line-dark);border-bottom:0.5px solid var(--line-dark);}
+.nums-grid{display:grid;grid-template-columns:repeat(4,1fr);background:var(--line-dark);gap:0.5px;}
+.ncard{background:var(--white);padding:3rem 2.5rem;}
+.ncard-v{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--black);line-height:1;margin-bottom:8px;}
+.ncard-v em{color:var(--gold);font-style:normal;}
+.ncard-l{font-size:13px;color:var(--text-mid);line-height:1.5;font-weight:300;}
+
+/* ─── SECCIÓN CLARA — PROCESO ─── */
+.como{background:var(--off-white);padding:7rem 2.5rem;}
+.como-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;margin-top:4rem;}
+.cstep{border-top:2px solid var(--line-dark);padding-top:2rem;transition:border-color 0.25s;}
+.cstep:hover{border-top-color:var(--gold);}
+.cstep-n{font-family:'Bebas Neue',sans-serif;font-size:56px;color:rgba(0,0,0,0.1);line-height:1;margin-bottom:1rem;transition:color 0.2s;}
+.cstep:hover .cstep-n{color:rgba(201,168,76,0.3);}
+.cstep-t{font-size:16px;font-weight:500;color:var(--black);margin-bottom:0.75rem;}
+.cstep-p{font-size:13px;color:var(--text-mid);line-height:1.7;font-weight:300;}
+
+/* ─── GALERÍA HORIZONTAL — NEGRO ─── */
+.galeria{background:var(--black);padding:7rem 2.5rem;}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:200px 200px;gap:3px;margin-top:4rem;}
+.gal-item{background:var(--black3);overflow:hidden;position:relative;cursor:pointer;}
+.gal-item.big{grid-column:span 2;grid-row:span 2;}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s,opacity 0.3s;opacity:0.7;}
+.gal-item:hover img{transform:scale(1.05);opacity:0.9;}
+.gal-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.12);letter-spacing:1.5px;text-transform:uppercase;}
+
+/* ─── CTA FINAL — BLANCO ─── */
+.cta-final{background:var(--white);padding:8rem 2.5rem;border-top:0.5px solid var(--line-dark);}
+.cta-inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4rem;}
+.cta-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;}
+.cta-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:min(8vw,80px);color:var(--black);line-height:0.88;margin-bottom:1.5rem;}
+.cta-title em{font-style:normal;color:var(--gold);}
+.cta-sub{font-size:16px;color:var(--text-mid);max-width:520px;line-height:1.75;font-weight:300;}
+.cta-panel{background:var(--black);border-radius:4px;padding:2.5rem;display:flex;flex-direction:column;gap:12px;min-width:280px;}
+.cta-panel-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:4px;}
+.btn-gold-full{background:var(--gold);color:var(--black);padding:15px 28px;border-radius:3px;font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;width:100%;transition:background 0.2s;}
+.btn-gold-full:hover{background:var(--gold2);}
+.btn-outline-light{background:transparent;color:rgba(255,255,255,0.6);padding:14px 28px;border-radius:3px;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;border:0.5px solid rgba(255,255,255,0.15);font-family:'DM Sans',sans-serif;width:100%;transition:border-color 0.2s;}
+.btn-outline-light:hover{border-color:rgba(255,255,255,0.35);}
+.cta-tel{font-size:12px;color:var(--text-dimmer);text-align:center;}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--black);border-top:0.5px solid var(--line-light);padding:5rem 2.5rem 2.5rem;}
+.footer-grid{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:4rem;margin-bottom:4rem;}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;color:var(--white);margin-bottom:1.25rem;}
+.flogo em{font-style:normal;color:var(--gold);}
+.fdesc{font-size:13px;color:var(--text-light);line-height:1.75;max-width:260px;font-weight:300;}
+.fsocial{display:flex;gap:10px;margin-top:1.5rem;}
+.fsoc{width:34px;height:34px;border-radius:4px;border:0.5px solid var(--line-light2);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-light);text-decoration:none;transition:all 0.2s;}
+.fsoc:hover{border-color:var(--gold);color:var(--gold);}
+.fcol-t{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dimmer);margin-bottom:1.5rem;}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.flinks a{font-size:13px;color:var(--text-light);text-decoration:none;transition:color 0.2s;font-weight:300;}
+.flinks a:hover{color:var(--white);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:2.5rem;border-top:0.5px solid var(--line-light);}
+.fcopy{font-size:11px;color:var(--text-dimmer);font-weight:300;}
+.flegal{display:flex;gap:2rem;}
+.flegal a{font-size:11px;color:var(--text-dimmer);text-decoration:none;transition:color 0.2s;}
+.flegal a:hover{color:var(--text-light);}
+
+/* Gold line top */
+.gold-line{height:3px;background:var(--gold);width:100%;}
+</style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+
+<!-- NAV -->
+<nav class="nav dark" id="nav">
+  <div class="nav-logo">FIESTO<em>P</em>IA</div>
+  <ul class="nav-menu">
+    <li><a href="/marcas">Marcas</a></li>
+    <li><a href="/para-salas">Para salas</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="/nosotros">Nosotros</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-tel">645 714 101</span>
+    <button class="nav-btn" onclick="window.location.href='/para-salas'">Presupuesto</button>
+  </div>
+</nav>
+
+<!-- HERO OSCURO -->
+<div class="hero">
+  <div class="hero-video">
+    <!-- <video autoplay muted loop playsinline src="hero.mp4"></video> -->
+  </div>
+  <div class="hero-placeholder"><img src="https://fiestopia.es/wp-content/uploads/2025/09/20191207_SANSARU-022.webp" style="width:100%;height:100%;object-fit:cover;opacity:0.45;"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="hero-badge-text">Grupo de entretenimiento · Valencia · Activo</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="l1">Formatos</span>
+          <span class="l2">que llenan</span>
+          <span class="l3">salas.</span>
+        </h1>
+        <p class="hero-sub"><strong>25 años</strong> creando experiencias de ocio en la Comunitat Valenciana. Producción propia, sin intermediarios.</p>
+        <div class="hero-actions">
+          <button class="btn-gold" onclick="window.location.href='/para-salas'">Ver formatos para salas</button>
+          <button class="btn-ghost-light" onclick="document.getElementById('eventos').scrollIntoView({behavior:'smooth'})">Próximos eventos</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stats-panel">
+          <div class="hstats-grid">
+            <div class="hstat"><div class="hstat-n">25<em>+</em></div><div class="hstat-l">Años de experiencia</div></div>
+            <div class="hstat"><div class="hstat-n">4</div><div class="hstat-l">Marcas activas</div></div>
+            <div class="hstat"><div class="hstat-n">10<em>k</em></div><div class="hstat-l">Asistentes / temporada</div></div>
+            <div class="hstat"><div class="hstat-n">48<em>h</em></div><div class="hstat-l">Para tu propuesta</div></div>
+          </div>
+          <div class="hero-next">
+            <div class="hero-next-dot"></div>
+            <span class="hero-next-text">Próximo evento</span>
+            <span class="hero-next-date">12 Abr · Gandia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER DORADO -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ti bold">SANSARU ON TOUR</span><span class="ti">·</span>
+    <span class="ti">SANSARU WEDDINGS</span><span class="ti">·</span>
+    <span class="ti bold">OCHENTERA</span><span class="ti">·</span>
+    <span class="ti">BOCACHICA</span><span class="ti">·</span>
+    <span class="ti">RAINBOW</span><span class="ti">·</span>
+    <span class="ti bold">25 AÑOS DE EXPERIENCIA</span><span class="ti">·</span>
+    <span class="ti">GANDIA · VALENCIA · ALZIRA · DÉNIA</span><span class="ti">·</span>
+    <span class="ti bold">SANSARU ON TOUR</span><span class="ti">·</span>
+    <span class="ti">SANSARU WEDDINGS</span><span class="ti">·</span>
+    <span class="ti bold">OCHENTERA</span><span class="ti">·</span>
+    <span class="ti">BOCACHICA</span><span class="ti">·</span>
+    <span class="ti">RAINBOW</span><span class="ti">·</span>
+    <span class="ti bold">25 AÑOS DE EXPERIENCIA</span><span class="ti">·</span>
+    <span class="ti">GANDIA · VALENCIA · ALZIRA · DÉNIA</span><span class="ti">·</span>
+  </div>
+</div>
+
+<!-- SOBRE NOSOTROS — BLANCO -->
+<div class="sobre">
+  <div class="sobre-inner">
+    <div>
+      <div class="sobre-eyebrow">Sobre nosotros</div>
+      <h2 class="sobre-title">Creamos<br>momentos <em>que<br>no se olvidan.</em></h2>
+      <div class="sobre-text">
+        <p><strong>Fiestopia es el grupo líder</strong> en la creación de experiencias y fiestas en la Comunitat Valenciana. Bajo nuestro nombre reunimos un portfolio de marcas especializadas que cubren todos los estilos y ocasiones.</p>
+        <p>Con más de 25 años en el sector del entretenimiento nocturno y diurno, hemos desarrollado un know-how único para garantizar que cada evento sea excepcional, personalizado e inolvidable.</p>
+      </div>
+      <div class="sobre-pilares">
+        <div class="pilar">
+          <div class="pilar-num">01</div>
+          <div><div class="pilar-title">Escuchamos tu esencia</div><div class="pilar-text">Cada cliente, cada sala, cada boda tiene su propio carácter. Lo entendemos antes de proponer nada.</div></div>
+        </div>
+        <div class="pilar">
+          <div class="pilar-num">02</div>
+          <div><div class="pilar-title">Diseñamos la experiencia</div><div class="pilar-text">Formatos probados con producción propia. Nada improvisado, todo pensado para funcionar.</div></div>
+        </div>
+        <div class="pilar">
+          <div class="pilar-num">03</div>
+          <div><div class="pilar-title">Ejecutamos con precisión</div><div class="pilar-text">El día del evento tú solo tienes que disfrutar. Nosotros nos encargamos de absolutamente todo.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="sobre-foto">
+      <div class="sfoto big"><img src="https://fiestopia.es/wp-content/uploads/2025/09/20191207_SANSARU-022.webp" alt="Fiestopia" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="sfoto"><img src="https://fiestopia.es/wp-content/uploads/2025/09/CBC06649-300x200.webp" alt="Fiestopia" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="sfoto"><img src="https://fiestopia.es/wp-content/uploads/2025/09/529682589_1343755931090964_4684448534242857194_n.jpg" alt="Fiestopia" style="width:100%;height:100%;object-fit:cover;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MARCAS — NEGRO -->
+<div class="marcas">
+  <div class="marcas-top">
+    <div>
+      <div class="sec-eyebrow-dark">Portfolio de marcas</div>
+      <h2 class="sec-h2-dark">Un universo de<br><em>experiencias.</em></h2>
+    </div>
+    <a class="marcas-link" href="/marcas">Ver todas →</a>
+  </div>
+
+  <div class="mgrid">
+
+    <!-- SANSARU grande -->
+    <div class="mc mc-a" onclick="window.open('https://sansaru.es/sansaru')">
+      <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/4.webp" alt="Sansaru">
+      <div class="mc-ph"><div class="mc-ph-t">S</div></div>
+      <div class="mc-color" style="background:linear-gradient(135deg,#C9A84C,transparent);"></div>
+      <div class="mc-grad"></div>
+      <div class="mc-arrow">→</div>
+      <div class="mc-body">
+        <div class="mc-accent" style="background:var(--gold);"></div>
+        <div class="mc-name">Sansaru On Tour</div>
+        <div class="mc-tag">Fiesta premium · Festival en sala</div>
+        <div class="mc-desc">Producción de alto impacto, DJs propios y +9.500 seguidores. El formato más consolidado del grupo.</div>
+        <div class="mc-pills"><span class="mc-pill">300–1.500 pax</span><span class="mc-pill">DJs propios</span><span class="mc-pill">Merch</span></div>
+      </div>
+    </div>
+
+    <!-- WEDDINGS -->
+    <div class="mc mc-b" onclick="window.location.href='/weddings'">
+      <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/5.webp" alt="Sansaru Weddings">
+      <div class="mc-ph"><div class="mc-ph-t">SW</div></div>
+      <div class="mc-color" style="background:linear-gradient(135deg,rgba(180,100,140,0.5),transparent);"></div>
+      <div class="mc-grad"></div>
+      <div class="mc-arrow">→</div>
+      <div class="mc-body">
+        <div class="mc-accent" style="background:#C87090;"></div>
+        <div class="mc-name">Sansaru Weddings</div>
+        <div class="mc-tag">Bodas · Circus · DJ</div>
+        <div class="mc-desc">Desde 600€. ★★★★★ Bodas.net. Temática Circus única.</div>
+        <div class="mc-pills"><span class="mc-pill">Desde 600€</span><span class="mc-pill">+10 años</span></div>
+      </div>
+    </div>
+
+    <!-- OCHENTERA -->
+    <div class="mc mc-c" onclick="window.location.href='/ochentera'">
+      <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/2.webp" alt="Ochentera">
+      <div class="mc-ph"><div class="mc-ph-t">80</div></div>
+      <div class="mc-color" style="background:linear-gradient(135deg,rgba(200,160,60,0.4),transparent);"></div>
+      <div class="mc-grad"></div>
+      <div class="mc-arrow">→</div>
+      <div class="mc-body">
+        <div class="mc-accent" style="background:#D4AA40;"></div>
+        <div class="mc-name">Ochentera</div>
+        <div class="mc-tag">Tardeo · Años 80 · Banda live</div>
+        <div class="mc-desc">Banda + DJ + animación. 4h. 150–600 pax.</div>
+        <div class="mc-pills"><span class="mc-pill">Tardeo 17h</span><span class="mc-pill">35–60 años</span></div>
+      </div>
+    </div>
+
+    <!-- BOCACHICA horizontal -->
+    <div class="mc mc-d" onclick="window.location.href='/bocachica'">
+      <img class="mc-img" src="https://fiestopia.es/wp-content/uploads/2025/09/1.webp" alt="Bocachica">
+      <div class="mc-ph"><div class="mc-ph-t">BC</div></div>
+      <div class="mc-color" style="background:linear-gradient(90deg,rgba(60,140,100,0.35),transparent);"></div>
+      <div class="mc-grad" style="background:linear-gradient(to right,rgba(10,10,10,0.97) 0%,rgba(10,10,10,0.15) 60%,transparent 100%);"></div>
+      <div class="mc-arrow">→</div>
+      <div class="mc-body" style="flex-direction:row;align-items:flex-end;justify-content:space-between;">
+        <div>
+          <div class="mc-accent" style="background:#3C8C64;"></div>
+          <div class="mc-name">Bocachica</div>
+          <div class="mc-tag">Pop español · Indie · Tardeo</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="mc-desc" style="max-width:260px;text-align:left;margin-bottom:0.75rem;">No se busca — se recuerda. Para el público adulto que no encuentra su sitio en la oferta habitual.</div>
+          <div class="mc-pills"><span class="mc-pill">100–400 pax</span><span class="mc-pill">35–55 años</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAINBOW -->
+    <div class="mc-e" onclick="window.location.href='/rainbow'">
+      <div class="mc-e-rainbow"></div>
+      <div class="mc-e-name">Rainbow</div>
+      <div class="mc-e-tag">En desarrollo · Formato LGBTQ+</div>
+      <div class="mc-e-spacer"></div>
+      <div class="mc-e-pill">Próximamente</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EVENTOS — CLARO -->
+<div class="eventos" id="eventos">
+  <div class="ev-top">
+    <div>
+      <div class="sec-eyebrow-light">Próximos eventos</div>
+      <h2 class="sec-h2-light">Tu próxima <em>noche.</em></h2>
+    </div>
+    <a class="ev-ver" href="/eventos">Ver todos →</a>
+  </div>
+
+  <div class="ev-tabs">
+    <button class="ev-tab on" onclick="filtrar('todos',this)">Todos</button>
+    <button class="ev-tab" onclick="filtrar('sansaru',this)">Sansaru</button>
+    <button class="ev-tab" onclick="filtrar('ochentera',this)">Ochentera</button>
+    <button class="ev-tab" onclick="filtrar('bocachica',this)">Bocachica</button>
+  </div>
+
+  <div class="egrid" id="egrid">
+    <div class="ecard big" data-m="ochentera">
+      <div class="ecard-img">
+        <div class="ecard-ph">OCHENTERA</div>
+        <div class="ecard-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera</div>
+      </div>
+      <div class="ecard-body">
+        <div class="ecard-date">Sáb 12 Abr 2026 · 17:00h</div>
+        <div class="ecard-name">Ochentera · Primavera</div>
+        <div class="ecard-lugar">Nombre de la sala · Gandia</div>
+        <div class="ecard-foot">
+          <div class="ecard-price">12 € <span>general</span></div>
+          <button class="ecard-btn gold" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+    </div>
+    <div class="ecard" data-m="bocachica">
+      <div class="ecard-img">
+        <div class="ecard-ph">BC</div>
+        <div class="ecard-badge" style="background:#D4EDDA;color:#1A5C30;">Bocachica</div>
+      </div>
+      <div class="ecard-body">
+        <div class="ecard-date">Vie 18 Abr 2026 · 19:00h</div>
+        <div class="ecard-name">Bocachica · Abril</div>
+        <div class="ecard-lugar">Nombre sala · Valencia</div>
+        <div class="ecard-foot">
+          <div class="ecard-price">8 €</div>
+          <button class="ecard-btn" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+    </div>
+    <div class="ecard" data-m="sansaru">
+      <div class="ecard-img">
+        <div class="ecard-ph">SAN</div>
+        <div class="ecard-badge" style="background:#FCE4D6;color:#7A2500;">Sansaru</div>
+        <div class="ecard-sold">Pocas entradas</div>
+      </div>
+      <div class="ecard-body">
+        <div class="ecard-date">Sáb 26 Abr 2026 · 22:00h</div>
+        <div class="ecard-name">Sansaru On Tour</div>
+        <div class="ecard-lugar">Nombre sala · Gandia</div>
+        <div class="ecard-foot">
+          <div class="ecard-price">15 €</div>
+          <button class="ecard-btn" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+    </div>
+    <div class="ecard" data-m="ochentera">
+      <div class="ecard-img">
+        <div class="ecard-ph">80</div>
+        <div class="ecard-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera</div>
+      </div>
+      <div class="ecard-body">
+        <div class="ecard-date">Dom 4 May 2026 · 17:00h</div>
+        <div class="ecard-name">Ochentera · Mayo</div>
+        <div class="ecard-lugar">Nombre sala · Alzira</div>
+        <div class="ecard-foot">
+          <div class="ecard-price">10 €</div>
+          <button class="ecard-btn gold" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+    </div>
+    <div class="ecard" data-m="sansaru">
+      <div class="ecard-img">
+        <div class="ecard-ph">SAN</div>
+        <div class="ecard-badge" style="background:#FCE4D6;color:#7A2500;">Sansaru</div>
+      </div>
+      <div class="ecard-body">
+        <div class="ecard-date">Sáb 10 May 2026 · 22:00h</div>
+        <div class="ecard-name">Sansaru On Tour</div>
+        <div class="ecard-lugar">Nombre sala · Dénia</div>
+        <div class="ecard-foot">
+          <div class="ecard-price">12 €</div>
+          <button class="ecard-btn" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ev-nl">
+    <div class="ev-nl-t"><strong>¿No quieres perderte ninguno?</strong> Te avisamos cuando publiquemos nuevas fechas.</div>
+    <div class="ev-nl-f">
+      <input type="email" placeholder="tu@email.com">
+      <button>Avisarme</button>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIENCIAS — NEGRO -->
+<div class="quien">
+  <div class="sec-eyebrow-dark">¿Qué buscas?</div>
+  <h2 class="sec-h2-dark">Tenemos algo<br><em>para ti.</em></h2>
+  <div class="quien-grid">
+    <div class="qcard">
+      <div class="qcard-line"></div>
+      <div class="qcard-n">01</div>
+      <div class="qcard-title">Salas y promotores</div>
+      <div class="qcard-text">Formatos probados con público propio. Producción completa, rider técnico y sin intermediarios. Tú pones el aforo, nosotros la fiesta.</div>
+      <a class="qcard-link" href="/para-salas">Ver formatos B2B →</a>
+    </div>
+    <div class="qcard">
+      <div class="qcard-line"></div>
+      <div class="qcard-n">02</div>
+      <div class="qcard-title">Novios y familias</div>
+      <div class="qcard-text">Sansaru Weddings convierte tu boda en la fiesta que nadie olvidará. Desde 600€, con contrato, factura y seguro de responsabilidad civil.</div>
+      <a class="qcard-link" href="/weddings">Ver paquetes de boda →</a>
+    </div>
+    <div class="qcard">
+      <div class="qcard-line"></div>
+      <div class="qcard-n">03</div>
+      <div class="qcard-title">Público y asistentes</div>
+      <div class="qcard-text">Consulta el calendario, compra tu entrada y únete a la comunidad. Siempre hay algo que no querrás perderte.</div>
+      <a class="qcard-link" href="/eventos">Ver próximos eventos →</a>
+    </div>
+  </div>
+</div>
+
+<!-- NÚMEROS — BLANCO -->
+<div class="nums">
+  <div class="nums-grid">
+    <div class="ncard"><div class="ncard-v">25<em>+</em></div><div class="ncard-l">Años en el sector del entretenimiento</div></div>
+    <div class="ncard"><div class="ncard-v">4</div><div class="ncard-l">Marcas activas con público propio</div></div>
+    <div class="ncard"><div class="ncard-v">9.5<em>k</em></div><div class="ncard-l">Seguidores entre todas las marcas</div></div>
+    <div class="ncard"><div class="ncard-v">48<em>h</em></div><div class="ncard-l">Para recibir rider y propuesta completa</div></div>
+  </div>
+</div>
+
+<!-- PROCESO — CLARO -->
+<div class="como">
+  <div class="sec-eyebrow-light">Cómo trabajamos</div>
+  <h2 class="sec-h2-light">Simple. Rápido.<br><em>Sin sorpresas.</em></h2>
+  <div class="como-grid">
+    <div class="cstep">
+      <div class="cstep-n">01</div>
+      <div class="cstep-t">Nos escribes</div>
+      <div class="cstep-p">Por WhatsApp, formulario o teléfono. Cuéntanos tu sala, aforo y qué formato te interesa.</div>
+    </div>
+    <div class="cstep">
+      <div class="cstep-n">02</div>
+      <div class="cstep-t">Propuesta en 48h</div>
+      <div class="cstep-p">Dossier completo, rider técnico y disponibilidad de fechas. Sin compromiso, sin letra pequeña.</div>
+    </div>
+    <div class="cstep">
+      <div class="cstep-n">03</div>
+      <div class="cstep-t">Cerramos contrato</div>
+      <div class="cstep-p">Todo por escrito. Condiciones claras, sin sorpresas el día del evento.</div>
+    </div>
+    <div class="cstep">
+      <div class="cstep-n">04</div>
+      <div class="cstep-t">Tú abres, nosotros llegamos</div>
+      <div class="cstep-p">Montaje, sonido, luces y animación. Nos encargamos de absolutamente todo.</div>
+    </div>
+  </div>
+</div>
+
+<!-- GALERÍA — NEGRO -->
+<div class="galeria">
+  <div class="sec-eyebrow-dark">La experiencia</div>
+  <h2 class="sec-h2-dark">Así se <em>vive.</em></h2>
+  <div class="gal-grid">
+    <div class="gal-item big"><img src="https://fiestopia.es/wp-content/uploads/2025/09/4.jpg" alt="Fiestopia" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s,opacity 0.3s;opacity:0.75;"></div>
+    <div class="gal-item"><img src="https://fiestopia.es/wp-content/uploads/2025/09/3.jpg" alt="Sansaru" style="width:100%;height:100%;object-fit:cover;opacity:0.75;transition:transform 0.5s,opacity 0.3s;"></div>
+    <div class="gal-item"><img src="https://fiestopia.es/wp-content/uploads/2025/09/Diseno-sin-titulo-7.webp" alt="Ochentera" style="width:100%;height:100%;object-fit:cover;opacity:0.75;transition:transform 0.5s,opacity 0.3s;"></div>
+    <div class="gal-item"><img src="https://fiestopia.es/wp-content/uploads/2025/09/1.jpg" alt="Bocachica" style="width:100%;height:100%;object-fit:cover;opacity:0.75;transition:transform 0.5s,opacity 0.3s;"></div>
+    <div class="gal-item"><img src="https://fiestopia.es/wp-content/uploads/2025/09/2.jpg" alt="Weddings" style="width:100%;height:100%;object-fit:cover;opacity:0.75;transition:transform 0.5s,opacity 0.3s;"></div>
+  </div>
+</div>
+
+<!-- CTA FINAL — BLANCO -->
+<div class="cta-final">
+  <div class="cta-inner">
+    <div>
+      <div class="cta-eyebrow">Para salas y promotores</div>
+      <h2 class="cta-title">¿Tu sala necesita<br><em>una noche así?</em></h2>
+      <p class="cta-sub">Escríbenos y en menos de 48 horas tienes rider técnico, condiciones económicas y disponibilidad de fechas. Sin compromiso.</p>
+    </div>
+    <div class="cta-panel">
+      <div class="cta-panel-label">Contáctanos ahora</div>
+      <button class="btn-gold-full" onclick="window.location.href='/para-salas'">Pedir presupuesto</button>
+      <button class="btn-outline-light" onclick="window.open('https://wa.me/34645714101')">WhatsApp · 645 714 101</button>
+      <div class="cta-tel">Villalonga, Valencia · Respuesta en 48h</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="flogo">FIESTO<em>P</em>IA</div>
+      <p class="fdesc">25 años de experiencia en el sector del entretenimiento. Grupo líder en la creación de experiencias y fiestas en la Comunitat Valenciana.</p>
+      <div class="fsocial">
+        <a class="fsoc" href="https://www.instagram.com/sansaruontour">IG</a>
+        <a class="fsoc" href="https://www.facebook.com/sansaruontour">FB</a>
+        <a class="fsoc" href="https://www.youtube.com/@sansaru7694">YT</a>
+        <a class="fsoc" href="https://wa.me/34645714101">WA</a>
+      </div>
+    </div>
+    <div>
+      <div class="fcol-t">Marcas</div>
+      <ul class="flinks">
+        <li><a href="https://sansaru.es/sansaru">Sansaru On Tour</a></li>
+        <li><a href="/weddings">Sansaru Weddings</a></li>
+        <li><a href="/ochentera">Ochentera</a></li>
+        <li><a href="/bocachica">Bocachica</a></li>
+        <li><a href="/rainbow">Rainbow</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fcol-t">Empresa</div>
+      <ul class="flinks">
+        <li><a href="/nosotros">Sobre nosotros</a></li>
+        <li><a href="/para-salas">Para salas B2B</a></li>
+        <li><a href="/eventos">Calendario</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fcol-t">Contacto</div>
+      <ul class="flinks">
+        <li><a href="https://wa.me/34645714101">WhatsApp · 645 714 101</a></li>
+        <li><a href="tel:645714101">Llamada directa</a></li>
+        <li><a href="#">Villalonga, Valencia</a></li>
+        <li><a href="https://pro.fourvenues.com/">Entradas · Fourvenues</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="fcopy">© 2026 Fiestopia S.L. · Todos los derechos reservados</div>
+    <div class="flegal">
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-cookies">Cookies</a>
+      <a href="/politica-privacidad">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav adapta al color de la sección
+const nav=document.getElementById('nav');
+const lightSections=['sobre','eventos','nums','como','cta-final'];
+function updateNav(){
+  const y=window.scrollY+80;
+  let isLight=false;
+  lightSections.forEach(id=>{
+    const el=document.getElementById(id)||document.querySelector('.'+id);
+    if(el){
+      const r=el.getBoundingClientRect();
+      if(r.top<=80&&r.bottom>=80)isLight=true;
+    }
+  });
+  nav.className='nav '+(isLight?'light':'dark');
+}
+window.addEventListener('scroll',updateNav);
+updateNav();
+
+// Filtros eventos
+function filtrar(m,btn){
+  document.querySelectorAll('.ev-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.ecard').forEach(c=>{
+    c.style.display=(m==='todos'||c.dataset.m===m)?'':'none';
+  });
+}
+</script>
+</body>
+</html>

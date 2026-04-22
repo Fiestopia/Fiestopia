@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eventos · Fiestopia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0A0A0A;--black2:#111111;--black3:#1A1A1A;
+  --white:#FFFFFF;--off-white:#F5F4F0;--light:#ECECEA;
+  --gold:#C9A84C;--gold2:#E2BC6A;
+  --text-dark:#1A1A1A;--text-mid:#555550;
+  --text-light:rgba(255,255,255,0.55);--text-dimmer:rgba(255,255,255,0.25);
+  --line-dark:rgba(0,0,0,0.08);--line-light:rgba(255,255,255,0.08);--line-light2:rgba(255,255,255,0.14);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--off-white);overflow-x:hidden;}
+::selection{background:var(--gold);color:#fff;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+.gold-line{height:3px;background:var(--gold);width:100%;}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;background:var(--black);border-bottom:0.5px solid var(--line-light);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--white);}
+.nav-logo em{font-style:normal;color:var(--gold);}
+.nav-menu{display:flex;gap:2.5rem;list-style:none;}
+.nav-menu a{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.nav-menu a:hover,.nav-menu a.active{color:var(--white);}
+.nav-btn{background:var(--gold);color:var(--black);padding:9px 22px;border-radius:3px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+
+/* HEADER PÁGINA */
+.page-header{background:var(--black);padding:5rem 2.5rem 4rem;position:relative;overflow:hidden;}
+.ph-texture{position:absolute;inset:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.ph-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:3rem;}
+.ph-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.ph-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+.ph-title{font-family:'Bebas Neue',sans-serif;font-size:min(10vw,88px);color:var(--white);line-height:0.88;}
+.ph-title em{font-style:normal;color:var(--gold);}
+.ph-right{text-align:right;}
+.ph-sub{font-size:14px;color:var(--text-light);line-height:1.7;max-width:320px;margin-bottom:1.25rem;font-weight:300;text-align:left;}
+.fourvenues-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:0.5px solid var(--line-light2);border-radius:3px;}
+.fv-dot{width:6px;height:6px;border-radius:50%;background:#00C48C;}
+.fv-text{font-size:11px;color:var(--text-light);letter-spacing:0.5px;}
+.fv-link{font-size:11px;color:var(--gold);text-decoration:none;}
+
+/* FILTROS */
+.filtros-bar{background:var(--white);padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--line-dark);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;position:sticky;top:62px;z-index:50;}
+.filtros-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mid);white-space:nowrap;}
+.filtros-tabs{display:flex;gap:6px;flex-wrap:wrap;}
+.ftab{font-size:11px;padding:6px 14px;border-radius:3px;border:0.5px solid var(--line-dark);color:var(--text-mid);cursor:pointer;transition:all 0.15s;background:transparent;font-family:'DM Sans',sans-serif;letter-spacing:0.3px;}
+.ftab:hover{border-color:var(--black);color:var(--black);}
+.ftab.on{background:var(--black);color:var(--white);border-color:var(--black);}
+.filtros-sep{width:0.5px;height:24px;background:var(--line-dark);}
+.filtros-mes{display:flex;gap:6px;flex-wrap:wrap;}
+.fmes{font-size:11px;padding:6px 12px;border-radius:3px;border:0.5px solid var(--line-dark);color:var(--text-mid);cursor:pointer;transition:all 0.15s;background:transparent;font-family:'DM Sans',sans-serif;}
+.fmes:hover{border-color:var(--gold);color:var(--gold);}
+.fmes.on{background:rgba(201,168,76,0.1);color:var(--gold);border-color:var(--gold);}
+
+/* MAIN CONTENT */
+.eventos-main{padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start;}
+
+/* GRID EVENTOS */
+.eventos-grid{display:flex;flex-direction:column;gap:2px;}
+
+/* EVENTO DESTACADO */
+.ev-featured{background:var(--white);overflow:hidden;cursor:pointer;transition:background 0.15s;margin-bottom:2px;}
+.ev-featured:hover{background:var(--light);}
+.ev-featured-inner{display:grid;grid-template-columns:360px 1fr;min-height:240px;}
+.evf-img{background:var(--light);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.evf-img img{width:100%;height:100%;object-fit:cover;opacity:0.75;transition:opacity 0.3s;}
+.ev-featured:hover .evf-img img{opacity:0.9;}
+.evf-ph{font-family:'Bebas Neue',sans-serif;font-size:72px;opacity:0.06;letter-spacing:3px;}
+.evf-badge{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:100px;font-weight:500;}
+.evf-sold{position:absolute;top:12px;right:12px;font-size:9px;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(255,255,255,0.9);color:var(--text-mid);}
+.evf-body{padding:2.5rem;}
+.evf-date{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mid);margin-bottom:8px;}
+.evf-name{font-family:'Bebas Neue',sans-serif;font-size:42px;color:var(--black);line-height:1;margin-bottom:6px;}
+.evf-lugar{font-size:14px;color:var(--text-mid);margin-bottom:1.25rem;}
+.evf-desc{font-size:13px;color:var(--text-mid);line-height:1.65;margin-bottom:2rem;font-weight:300;max-width:400px;}
+.evf-footer{display:flex;align-items:center;gap:1.5rem;}
+.evf-price{font-size:22px;font-weight:500;color:var(--black);}
+.evf-price span{font-size:12px;font-weight:300;color:var(--text-mid);margin-left:3px;}
+.btn-comprar{background:var(--black);color:var(--white);padding:12px 24px;border-radius:3px;font-size:11px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.btn-comprar:hover{background:var(--gold);color:var(--black);}
+.btn-comprar.gold{background:var(--gold);color:var(--black);}
+.btn-comprar.gold:hover{background:var(--gold2);}
+
+/* EVENTO NORMAL */
+.ev-card{background:var(--white);display:grid;grid-template-columns:180px 1fr auto;align-items:center;gap:2rem;padding:1.5rem 2rem;cursor:pointer;transition:background 0.15s;border-top:0.5px solid var(--line-dark);}
+.ev-card:first-of-type{border-top:none;}
+.ev-card:hover{background:var(--light);}
+.evc-fecha{text-align:center;}
+.evc-dia{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--black);line-height:1;}
+.evc-mes{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mid);}
+.evc-dow{font-size:11px;color:var(--text-mid);margin-top:2px;}
+.evc-sep{width:0.5px;height:60px;background:var(--line-dark);flex-shrink:0;}
+.evc-info{}
+.evc-badge{display:inline-block;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:100px;font-weight:500;margin-bottom:8px;}
+.evc-name{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--black);line-height:1;margin-bottom:4px;}
+.evc-lugar{font-size:13px;color:var(--text-mid);}
+.evc-hora{font-size:12px;color:var(--text-mid);margin-top:3px;}
+.evc-right{text-align:right;flex-shrink:0;}
+.evc-price{font-size:20px;font-weight:500;color:var(--black);margin-bottom:10px;}
+.evc-price span{font-size:11px;font-weight:300;color:var(--text-mid);}
+
+/* SIN EVENTOS */
+.no-events{background:var(--white);padding:4rem;text-align:center;display:none;}
+.no-events-title{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--black);margin-bottom:0.75rem;}
+.no-events-text{font-size:14px;color:var(--text-mid);}
+
+/* FOURVENUES EMBED */
+.fv-embed-section{background:var(--white);padding:3rem 2.5rem;margin-top:2px;border-top:0.5px solid var(--line-dark);}
+.fv-embed-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--black);margin-bottom:0.5rem;}
+.fv-embed-sub{font-size:13px;color:var(--text-mid);margin-bottom:2rem;}
+.fv-embed-box{background:var(--off-white);border:0.5px solid var(--line-dark);border-radius:4px;padding:3rem;text-align:center;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
+.fv-embed-icon{width:48px;height:48px;border-radius:8px;background:rgba(201,168,76,0.1);border:0.5px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;}
+.fv-embed-icon svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.5;}
+.fv-embed-label{font-size:14px;color:var(--text-mid);max-width:400px;line-height:1.6;}
+.fv-embed-code{background:var(--light);border-radius:3px;padding:1rem 1.5rem;font-size:12px;color:var(--text-mid);font-family:monospace;margin-top:0.5rem;}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:2px;position:sticky;top:120px;}
+.sidebar-block{background:var(--white);padding:2rem;}
+.sb-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--text-mid);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:0.5px solid var(--line-dark);}
+
+/* PRÓXIMO EVENTO sidebar */
+.sb-proximo{display:flex;flex-direction:column;gap:10px;}
+.sb-ev{padding:1rem 0;border-bottom:0.5px solid var(--line-dark);cursor:pointer;transition:opacity 0.15s;}
+.sb-ev:hover{opacity:0.7;}
+.sb-ev:last-child{border-bottom:none;}
+.sb-ev-badge{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:100px;font-weight:500;display:inline-block;margin-bottom:6px;}
+.sb-ev-name{font-size:14px;font-weight:500;color:var(--text-dark);margin-bottom:3px;}
+.sb-ev-meta{font-size:12px;color:var(--text-mid);}
+
+/* NEWSLETTER sidebar */
+.sb-nl{}
+.sb-nl-text{font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:1.25rem;}
+.sb-nl-form{display:flex;flex-direction:column;gap:8px;}
+.sb-nl-form input{background:var(--off-white);border:0.5px solid var(--line-dark);border-radius:3px;padding:10px 14px;font-size:13px;color:var(--text-dark);font-family:'DM Sans',sans-serif;outline:none;}
+.sb-nl-form input:focus{border-color:var(--gold);}
+.sb-nl-form input::placeholder{color:var(--text-mid);}
+.sb-nl-form button{background:var(--gold);color:var(--black);padding:10px;border-radius:3px;font-size:11px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:0.8px;font-weight:500;}
+
+/* MARCAS sidebar */
+.sb-marcas{display:flex;flex-direction:column;gap:0;}
+.sb-marca{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--line-dark);cursor:pointer;text-decoration:none;transition:opacity 0.15s;}
+.sb-marca:hover{opacity:0.7;}
+.sb-marca:last-child{border-bottom:none;}
+.sb-marca-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.sb-marca-name{font-size:13px;color:var(--text-dark);flex:1;}
+.sb-marca-arrow{font-size:11px;color:var(--text-mid);}
+
+/* WA SIDEBAR */
+.sb-wa{display:flex;align-items:center;gap:10px;background:rgba(37,211,102,0.05);border:0.5px solid rgba(37,211,102,0.2);border-radius:3px;padding:1rem;cursor:pointer;text-decoration:none;}
+.sb-wa svg{width:20px;height:20px;fill:#25D366;flex-shrink:0;}
+.sb-wa-text{font-size:13px;color:#25D366;font-weight:500;}
+.sb-wa-sub{font-size:11px;color:rgba(37,211,102,0.6);}
+
+/* FOOTER */
+.footer{background:var(--black);border-top:0.5px solid var(--line-light);padding:2.5rem;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--white);}
+.flogo em{font-style:normal;color:var(--gold);}
+.fcopy{font-size:11px;color:var(--text-dimmer);}
+.flegal{display:flex;gap:2rem;}
+.flegal a{font-size:11px;color:var(--text-dimmer);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+
+<nav class="nav">
+  <div class="nav-logo"><a href="/" style="text-decoration:none;color:inherit;">FIESTO<em>P</em>IA</a></div>
+  <ul class="nav-menu">
+    <li><a href="/marcas">Marcas</a></li>
+    <li><a href="/para-salas">Para salas</a></li>
+    <li><a href="/eventos" class="active">Eventos</a></li>
+    <li><a href="/nosotros">Nosotros</a></li>
+  </ul>
+  <button class="nav-btn" onclick="window.location.href='/contacto'">Contacto</button>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="ph-texture"></div>
+  <div class="ph-content">
+    <div>
+      <div class="ph-eyebrow">Calendario</div>
+      <h1 class="ph-title">Próximos<br><em>eventos.</em></h1>
+    </div>
+    <div class="ph-right">
+      <p class="ph-sub">Compra tu entrada con antelación. Las mejores fechas se agotan rápido.</p>
+      <div class="fourvenues-badge">
+        <div class="fv-dot"></div>
+        <span class="fv-text">Entradas gestionadas por</span>
+        <a class="fv-link" href="https://pro.fourvenues.com/" target="_blank">Fourvenues →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<div class="filtros-bar">
+  <span class="filtros-label">Filtrar por</span>
+  <div class="filtros-tabs">
+    <button class="ftab on" onclick="filtrar('todos',this)">Todos</button>
+    <button class="ftab" onclick="filtrar('sansaru',this)">Sansaru</button>
+    <button class="ftab" onclick="filtrar('ochentera',this)">Ochentera</button>
+    <button class="ftab" onclick="filtrar('bocachica',this)">Bocachica</button>
+    <button class="ftab" onclick="filtrar('weddings',this)">Weddings</button>
+  </div>
+  <div class="filtros-sep"></div>
+  <div class="filtros-mes">
+    <button class="fmes on" onclick="filtrarMes('todos',this)">Todos los meses</button>
+    <button class="fmes" onclick="filtrarMes('abr',this)">Abril</button>
+    <button class="fmes" onclick="filtrarMes('may',this)">Mayo</button>
+    <button class="fmes" onclick="filtrarMes('jun',this)">Junio</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="eventos-main">
+  <div>
+
+    <!-- EVENTO DESTACADO -->
+    <div class="ev-featured" data-marca="ochentera" data-mes="abr">
+      <div class="ev-featured-inner">
+        <div class="evf-img">
+          <img src="https://fiestopia.es/wp-content/uploads/2025/09/Diseno-sin-titulo-7.webp" alt="Ochentera">
+          <div class="evf-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera · Destacado</div>
+        </div>
+        <div class="evf-body">
+          <div class="evf-date">Sábado 12 de Abril 2026 · 17:00h</div>
+          <div class="evf-name">Ochentera · Primavera</div>
+          <div class="evf-lugar">Nombre de la sala · Gandia, Valencia</div>
+          <div class="evf-desc">La fiesta de los 80 más esperada del año. Banda tributo en directo, DJ Santi Canet y animación con regalos para todos. 4 horas sin parar.</div>
+          <div class="evf-footer">
+            <div class="evf-price">12 € <span>entrada general</span></div>
+            <button class="btn-comprar gold" onclick="window.open('https://pro.fourvenues.com/')">Comprar entrada</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENTOS LISTA -->
+    <div class="eventos-lista" id="eventos-lista">
+
+      <div class="ev-card" data-marca="bocachica" data-mes="abr" onclick="window.open('https://pro.fourvenues.com/')">
+        <div class="evc-fecha">
+          <div class="evc-dia">18</div>
+          <div class="evc-mes">Abr 2026</div>
+          <div class="evc-dow">Viernes</div>
+        </div>
+        <div class="evc-sep"></div>
+        <div class="evc-info">
+          <div class="evc-badge" style="background:#D4EDDA;color:#1A5C30;">Bocachica</div>
+          <div class="evc-name">Bocachica · Abril</div>
+          <div class="evc-lugar">Nombre de la sala · Valencia</div>
+          <div class="evc-hora">19:00h · Tardeo</div>
+        </div>
+        <div class="evc-right">
+          <div class="evc-price">8 € <span>general</span></div>
+          <button class="btn-comprar" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+
+      <div class="ev-card" data-marca="sansaru" data-mes="abr" onclick="window.open('https://pro.fourvenues.com/')">
+        <div class="evc-fecha">
+          <div class="evc-dia">26</div>
+          <div class="evc-mes">Abr 2026</div>
+          <div class="evc-dow">Sábado</div>
+        </div>
+        <div class="evc-sep"></div>
+        <div class="evc-info">
+          <div class="evc-badge" style="background:#FCE4D6;color:#7A2500;">Sansaru On Tour</div>
+          <div class="evc-name">Sansaru On Tour</div>
+          <div class="evc-lugar">Nombre de la sala · Gandia</div>
+          <div class="evc-hora">22:00h · Noche · Pocas entradas</div>
+        </div>
+        <div class="evc-right">
+          <div class="evc-price">15 € <span>general</span></div>
+          <button class="btn-comprar" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+
+      <div class="ev-card" data-marca="ochentera" data-mes="may" onclick="window.open('https://pro.fourvenues.com/')">
+        <div class="evc-fecha">
+          <div class="evc-dia">04</div>
+          <div class="evc-mes">May 2026</div>
+          <div class="evc-dow">Domingo</div>
+        </div>
+        <div class="evc-sep"></div>
+        <div class="evc-info">
+          <div class="evc-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera</div>
+          <div class="evc-name">Ochentera · Mayo</div>
+          <div class="evc-lugar">Nombre de la sala · Alzira</div>
+          <div class="evc-hora">17:00h · Tardeo</div>
+        </div>
+        <div class="evc-right">
+          <div class="evc-price">10 € <span>general</span></div>
+          <button class="btn-comprar gold" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+
+      <div class="ev-card" data-marca="sansaru" data-mes="may" onclick="window.open('https://pro.fourvenues.com/')">
+        <div class="evc-fecha">
+          <div class="evc-dia">10</div>
+          <div class="evc-mes">May 2026</div>
+          <div class="evc-dow">Sábado</div>
+        </div>
+        <div class="evc-sep"></div>
+        <div class="evc-info">
+          <div class="evc-badge" style="background:#FCE4D6;color:#7A2500;">Sansaru On Tour</div>
+          <div class="evc-name">Sansaru On Tour</div>
+          <div class="evc-lugar">Nombre de la sala · Dénia</div>
+          <div class="evc-hora">22:00h · Noche</div>
+        </div>
+        <div class="evc-right">
+          <div class="evc-price">12 € <span>general</span></div>
+          <button class="btn-comprar" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+
+      <div class="ev-card" data-marca="bocachica" data-mes="may" onclick="window.open('https://pro.fourvenues.com/')">
+        <div class="evc-fecha">
+          <div class="evc-dia">23</div>
+          <div class="evc-mes">May 2026</div>
+          <div class="evc-dow">Sábado</div>
+        </div>
+        <div class="evc-sep"></div>
+        <div class="evc-info">
+          <div class="evc-badge" style="background:#D4EDDA;color:#1A5C30;">Bocachica</div>
+          <div class="evc-name">Bocachica · Mayo</div>
+          <div class="evc-lugar">Nombre de la sala · Gandia</div>
+          <div class="evc-hora">19:00h · Tardeo</div>
+        </div>
+        <div class="evc-right">
+          <div class="evc-price">8 € <span>general</span></div>
+          <button class="btn-comprar" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+
+      <div class="ev-card" data-marca="ochentera" data-mes="jun" onclick="window.open('https://pro.fourvenues.com/')">
+        <div class="evc-fecha">
+          <div class="evc-dia">07</div>
+          <div class="evc-mes">Jun 2026</div>
+          <div class="evc-dow">Domingo</div>
+        </div>
+        <div class="evc-sep"></div>
+        <div class="evc-info">
+          <div class="evc-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera</div>
+          <div class="evc-name">Ochentera · Verano</div>
+          <div class="evc-lugar">Nombre de la sala · Valencia</div>
+          <div class="evc-hora">17:00h · Tardeo</div>
+        </div>
+        <div class="evc-right">
+          <div class="evc-price">12 € <span>general</span></div>
+          <button class="btn-comprar gold" onclick="event.stopPropagation();window.open('https://pro.fourvenues.com/')">Comprar</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="no-events" id="no-events">
+      <div class="no-events-title">Sin eventos en esta selección</div>
+      <div class="no-events-text">Prueba con otro filtro o suscríbete para recibir aviso de nuevas fechas.</div>
+    </div>
+
+    <!-- FOURVENUES EMBED -->
+    <div class="fv-embed-section">
+      <div class="fv-embed-title">Calendario completo en Fourvenues</div>
+      <div class="fv-embed-sub">Consulta todas las fechas disponibles, gestiona tus entradas y recibe confirmación instantánea.</div>
+      <div class="fv-embed-box">
+        <div class="fv-embed-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div class="fv-embed-label">Aquí irá el widget de Fourvenues embebido.<br>En WordPress añade el shortcode o iframe de Fourvenues en este bloque.</div>
+        <div class="fv-embed-code">
+          &lt;!-- Widget Fourvenues --&gt;<br>
+          &lt;iframe src="https://pro.fourvenues.com/widget/TUCODIGO"<br>
+          &nbsp;&nbsp;width="100%" height="600" frameborder="0"&gt;&lt;/iframe&gt;
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="sidebar-block">
+      <div class="sb-title">Lo más próximo</div>
+      <div class="sb-proximo">
+        <div class="sb-ev" onclick="window.open('https://pro.fourvenues.com/')">
+          <div class="sb-ev-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera</div>
+          <div class="sb-ev-name">Ochentera · Primavera</div>
+          <div class="sb-ev-meta">12 Abr · Gandia · 12€</div>
+        </div>
+        <div class="sb-ev" onclick="window.open('https://pro.fourvenues.com/')">
+          <div class="sb-ev-badge" style="background:#D4EDDA;color:#1A5C30;">Bocachica</div>
+          <div class="sb-ev-name">Bocachica · Abril</div>
+          <div class="sb-ev-meta">18 Abr · Valencia · 8€</div>
+        </div>
+        <div class="sb-ev" onclick="window.open('https://pro.fourvenues.com/')">
+          <div class="sb-ev-badge" style="background:#FCE4D6;color:#7A2500;">Sansaru</div>
+          <div class="sb-ev-name">Sansaru On Tour</div>
+          <div class="sb-ev-meta">26 Abr · Gandia · 15€ · Pocas entradas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sb-title">Avísame de nuevas fechas</div>
+      <div class="sb-nl">
+        <div class="sb-nl-text">Sé el primero en enterarte cuando publiquemos nuevos eventos.</div>
+        <div class="sb-nl-form">
+          <input type="email" placeholder="tu@email.com">
+          <button>Suscribirme</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sb-title">Nuestras marcas</div>
+      <div class="sb-marcas">
+        <a class="sb-marca" href="https://sansaru.es/sansaru" target="_blank">
+          <div class="sb-marca-dot" style="background:var(--gold);"></div>
+          <div class="sb-marca-name">Sansaru On Tour</div>
+          <div class="sb-marca-arrow">→</div>
+        </a>
+        <a class="sb-marca" href="/weddings">
+          <div class="sb-marca-dot" style="background:#C87090;"></div>
+          <div class="sb-marca-name">Sansaru Weddings</div>
+          <div class="sb-marca-arrow">→</div>
+        </a>
+        <a class="sb-marca" href="/ochentera">
+          <div class="sb-marca-dot" style="background:#D4AA40;"></div>
+          <div class="sb-marca-name">Ochentera</div>
+          <div class="sb-marca-arrow">→</div>
+        </a>
+        <a class="sb-marca" href="/bocachica">
+          <div class="sb-marca-dot" style="background:#3C8C64;"></div>
+          <div class="sb-marca-name">Bocachica</div>
+          <div class="sb-marca-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <a class="sb-wa" href="https://wa.me/34645714101" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <div>
+          <div class="sb-wa-text">Contactar por WhatsApp</div>
+          <div class="sb-wa-sub">645 714 101</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <div class="flogo">FIESTO<em>P</em>IA</div>
+    <div class="fcopy">© 2026 Fiestopia S.L. · Todos los derechos reservados</div>
+    <div class="flegal">
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-cookies">Cookies</a>
+      <a href="/politica-privacidad">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function filtrar(marca, btn){
+  document.querySelectorAll('.filtros-tabs .ftab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  aplicarFiltros();
+}
+function filtrarMes(mes, btn){
+  document.querySelectorAll('.fmes').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  aplicarFiltros();
+}
+function aplicarFiltros(){
+  const marca = document.querySelector('.filtros-tabs .ftab.on')?.dataset?.m || 'todos';
+  const mes = document.querySelector('.fmes.on')?.dataset?.m || 'todos';
+  const cards = document.querySelectorAll('.ev-card');
+  const featured = document.querySelector('.ev-featured');
+  let visible = 0;
+
+  // Featured
+  const fm = featured.dataset.marca;
+  const fmes = featured.dataset.mes;
+  const fv = (marca==='todos'||fm===marca) && (mes==='todos'||fmes===mes);
+  featured.style.display = fv ? '' : 'none';
+  if(fv) visible++;
+
+  cards.forEach(c=>{
+    const cm = c.dataset.marca;
+    const cmes = c.dataset.mes;
+    const show = (marca==='todos'||cm===marca) && (mes==='todos'||cmes===mes);
+    c.style.display = show ? '' : 'none';
+    if(show) visible++;
+  });
+
+  document.getElementById('no-events').style.display = visible===0 ? 'block' : 'none';
+}
+
+// Guardar el valor de filtro en el atributo data para poder leerlo
+document.querySelectorAll('.filtros-tabs .ftab').forEach(b=>{
+  b.dataset.m = b.onclick.toString().match(/'([^']+)'/)?.[1] || 'todos';
+});
+document.querySelectorAll('.fmes').forEach(b=>{
+  b.dataset.m = b.onclick.toString().match(/'([^']+)'/)?.[1] || 'todos';
+});
+</script>
+</body>
+</html>

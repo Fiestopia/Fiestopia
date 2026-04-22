@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto · Fiestopia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0A0A0A;--black2:#111111;--black3:#1A1A1A;
+  --white:#FFFFFF;--off-white:#F5F4F0;--light:#ECECEA;
+  --gold:#C9A84C;--gold2:#E2BC6A;
+  --text-dark:#1A1A1A;--text-mid:#555550;
+  --text-light:rgba(255,255,255,0.55);--text-dimmer:rgba(255,255,255,0.25);
+  --line-dark:rgba(0,0,0,0.08);--line-light:rgba(255,255,255,0.08);--line-light2:rgba(255,255,255,0.14);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden;}
+::selection{background:var(--gold);color:#fff;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+
+.gold-line{height:3px;background:var(--gold);width:100%;}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;background:var(--white);border-bottom:0.5px solid var(--line-dark);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--black);}
+.nav-logo em{font-style:normal;color:var(--gold);}
+.nav-menu{display:flex;gap:2.5rem;list-style:none;}
+.nav-menu a{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-mid);text-decoration:none;transition:color 0.2s;}
+.nav-menu a:hover{color:var(--black);}
+.nav-btn{background:var(--gold);color:var(--black);padding:9px 22px;border-radius:3px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+
+/* HERO */
+.hero{background:var(--black);padding:7rem 2.5rem 5rem;position:relative;overflow:hidden;}
+.hero-texture{position:absolute;inset:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.hero-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:min(10vw,96px);color:var(--white);line-height:0.88;margin-bottom:1.5rem;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-sub{font-size:16px;color:var(--text-light);line-height:1.8;font-weight:300;max-width:420px;}
+.hero-right{display:flex;flex-direction:column;gap:1.5rem;}
+.contact-quick{background:rgba(255,255,255,0.04);border:0.5px solid var(--line-light2);border-radius:4px;padding:2rem;}
+.cq-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-light);margin-bottom:1.25rem;}
+.cq-item{display:flex;align-items:center;gap:14px;padding:0.875rem 0;border-bottom:0.5px solid var(--line-light);}
+.cq-item:last-child{border-bottom:none;padding-bottom:0;}
+.cq-icon{width:36px;height:36px;border-radius:6px;background:rgba(201,168,76,0.1);border:0.5px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cq-icon svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.cq-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dimmer);margin-bottom:3px;}
+.cq-value{font-size:14px;color:var(--white);font-weight:400;}
+.cq-value a{color:var(--white);text-decoration:none;transition:color 0.2s;}
+.cq-value a:hover{color:var(--gold);}
+.cq-badge{margin-top:3px;font-size:10px;color:var(--gold);letter-spacing:0.3px;}
+
+/* FORMULARIO + INFO */
+.main-grid{display:grid;grid-template-columns:1fr 400px;gap:2px;background:var(--line-dark);}
+
+/* FORMULARIO — blanco */
+.form-section{background:var(--white);padding:5rem 3rem;}
+.form-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.form-eyebrow::before{content:'';width:12px;height:1px;background:var(--gold);}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--black);line-height:0.92;margin-bottom:3rem;}
+.form-title em{font-style:normal;color:var(--gold);}
+
+.form{display:flex;flex-direction:column;gap:0;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;}
+.field{display:flex;flex-direction:column;gap:0;padding:1.25rem 0;border-bottom:0.5px solid var(--line-dark);position:relative;}
+.field-full{grid-column:span 2;}
+.field label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mid);margin-bottom:8px;}
+.field input,.field textarea,.field select{background:transparent;border:none;outline:none;font-size:15px;color:var(--text-dark);font-family:'DM Sans',sans-serif;font-weight:300;resize:none;width:100%;padding:0;}
+.field input::placeholder,.field textarea::placeholder{color:rgba(0,0,0,0.2);}
+.field select{appearance:none;cursor:pointer;}
+.field textarea{min-height:100px;line-height:1.6;}
+.field::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+.field:focus-within::after{width:100%;}
+.field:focus-within label{color:var(--gold);}
+
+.form-tipo{margin:2rem 0;}
+.form-tipo-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-mid);margin-bottom:1rem;}
+.tipo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.tipo-opt{padding:0.875rem 1rem;border:0.5px solid var(--line-dark);border-radius:3px;cursor:pointer;transition:all 0.15s;text-align:center;}
+.tipo-opt:hover{border-color:var(--gold);}
+.tipo-opt.selected{border-color:var(--gold);background:rgba(201,168,76,0.05);}
+.tipo-opt input{display:none;}
+.tipo-opt-name{font-size:13px;font-weight:400;color:var(--text-dark);}
+.tipo-opt-tag{font-size:10px;color:var(--text-mid);margin-top:2px;}
+
+.form-submit{margin-top:2.5rem;display:flex;align-items:center;gap:1.5rem;}
+.btn-submit{background:var(--black);color:var(--white);padding:15px 32px;border-radius:3px;font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+.btn-submit:hover{background:var(--gold);color:var(--black);}
+.submit-note{font-size:12px;color:var(--text-mid);line-height:1.5;}
+
+/* SIDEBAR info — negro */
+.info-section{background:var(--black);padding:5rem 2.5rem;display:flex;flex-direction:column;gap:3rem;}
+.info-block{}
+.info-block-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:0.5px solid var(--line-light);}
+.info-block-text{font-size:14px;color:var(--text-light);line-height:1.75;font-weight:300;}
+.info-block-text strong{color:var(--white);font-weight:400;}
+
+.horario-grid{display:flex;flex-direction:column;gap:8px;}
+.horario-item{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:6px 0;border-bottom:0.5px solid var(--line-light);}
+.horario-item:last-child{border-bottom:none;}
+.horario-dia{color:var(--text-light);font-weight:300;}
+.horario-hora{color:var(--white);}
+.horario-badge{font-size:10px;padding:2px 8px;border-radius:100px;background:rgba(201,168,76,0.15);color:var(--gold);}
+
+.marcas-contacto{display:flex;flex-direction:column;gap:8px;}
+.marca-contacto-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--line-light);cursor:pointer;transition:opacity 0.2s;}
+.marca-contacto-item:hover{opacity:0.7;}
+.marca-contacto-item:last-child{border-bottom:none;}
+.mci-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.mci-name{font-size:13px;color:var(--white);flex:1;}
+.mci-arrow{font-size:12px;color:var(--text-dimmer);}
+
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(37,211,102,0.1);border:0.5px solid rgba(37,211,102,0.25);border-radius:4px;padding:1rem;cursor:pointer;transition:background 0.2s;text-decoration:none;}
+.whatsapp-btn:hover{background:rgba(37,211,102,0.18);}
+.wa-icon{width:20px;height:20px;}
+.wa-text{font-size:13px;color:#25D366;font-weight:500;}
+.wa-num{font-size:11px;color:rgba(37,211,102,0.6);}
+
+/* MAPA placeholder */
+.mapa{background:var(--off-white);height:300px;display:flex;align-items:center;justify-content:center;border-top:0.5px solid var(--line-dark);}
+.mapa-inner{text-align:center;}
+.mapa-label{font-size:12px;color:var(--text-mid);margin-bottom:8px;letter-spacing:0.5px;}
+.mapa-loc{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--black);}
+.mapa-sub{font-size:13px;color:var(--text-mid);margin-top:4px;}
+
+/* GARANTÍAS */
+.garantias{background:var(--black);padding:4rem 2.5rem;}
+.gar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-light);margin-top:2.5rem;}
+.gar-item{background:var(--black2);padding:2rem 1.75rem;}
+.gar-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--gold);line-height:1;margin-bottom:8px;}
+.gar-text{font-size:13px;color:var(--text-light);line-height:1.6;font-weight:300;}
+
+/* FOOTER */
+.footer{background:var(--black);border-top:0.5px solid var(--line-light);padding:3rem 2.5rem 2rem;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--white);}
+.flogo em{font-style:normal;color:var(--gold);}
+.fcopy{font-size:11px;color:var(--text-dimmer);}
+.flegal{display:flex;gap:2rem;}
+.flegal a{font-size:11px;color:var(--text-dimmer);text-decoration:none;}
+.flegal a:hover{color:var(--text-light);}
+</style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+
+<nav class="nav">
+  <div class="nav-logo"><a href="/" style="text-decoration:none;color:inherit;">FIESTO<em>P</em>IA</a></div>
+  <ul class="nav-menu">
+    <li><a href="/marcas">Marcas</a></li>
+    <li><a href="/para-salas">Para salas</a></li>
+    <li><a href="/eventos">Eventos</a></li>
+    <li><a href="/nosotros">Nosotros</a></li>
+  </ul>
+  <button class="nav-btn">645 714 101</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">Contacto</div>
+      <h1 class="hero-title">Hablemos<br>de tu <em>próximo<br>evento.</em></h1>
+      <p class="hero-sub">Escríbenos, llámanos o ven a vernos. Respondemos en menos de 48 horas con una propuesta a tu medida.</p>
+    </div>
+    <div class="hero-right">
+      <div class="contact-quick">
+        <div class="cq-title">Contacto directo</div>
+        <div class="cq-item">
+          <div class="cq-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.79 12 19.79 19.79 0 011.72 3.41 2 2 0 013.71 1.25h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.91a16 16 0 006.29 6.29l1.42-1.42a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="cq-label">Teléfono / WhatsApp</div>
+            <div class="cq-value"><a href="tel:645714101">645 714 101</a></div>
+            <div class="cq-badge">Respuesta inmediata por WhatsApp</div>
+          </div>
+        </div>
+        <div class="cq-item">
+          <div class="cq-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="cq-label">Ubicación</div>
+            <div class="cq-value">Villalonga, Valencia</div>
+            <div class="cq-badge">Comunitat Valenciana</div>
+          </div>
+        </div>
+        <div class="cq-item">
+          <div class="cq-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="cq-label">Respuesta garantizada</div>
+            <div class="cq-value">En menos de 48 horas</div>
+            <div class="cq-badge">Con propuesta completa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMULARIO + SIDEBAR -->
+<div class="main-grid">
+
+  <!-- FORMULARIO -->
+  <div class="form-section">
+    <div class="form-eyebrow">Cuéntanos</div>
+    <h2 class="form-title">Tu <em>consulta.</em></h2>
+
+    <!-- TIPO DE CONSULTA -->
+    <div class="form-tipo">
+      <div class="form-tipo-label">¿Qué te trae por aquí?</div>
+      <div class="tipo-grid">
+        <div class="tipo-opt selected" onclick="selectTipo(this)">
+          <input type="radio" name="tipo" value="sala">
+          <div class="tipo-opt-name">Sala / promotor</div>
+          <div class="tipo-opt-tag">Quiero contratar un formato</div>
+        </div>
+        <div class="tipo-opt" onclick="selectTipo(this)">
+          <input type="radio" name="tipo" value="boda">
+          <div class="tipo-opt-name">Boda</div>
+          <div class="tipo-opt-tag">Quiero animar mi boda</div>
+        </div>
+        <div class="tipo-opt" onclick="selectTipo(this)">
+          <input type="radio" name="tipo" value="otro">
+          <div class="tipo-opt-name">Otro evento</div>
+          <div class="tipo-opt-tag">Empresa, comunidad, privado...</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="form" onsubmit="return false;">
+      <div class="form-row">
+        <div class="field">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre completo">
+        </div>
+        <div class="field">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="645 000 000">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="tu@email.com">
+        </div>
+        <div class="field">
+          <label>Fecha aproximada</label>
+          <input type="text" placeholder="Mes y año">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label>Formato / marca de interés</label>
+          <select>
+            <option value="">Selecciona...</option>
+            <option>Sansaru On Tour</option>
+            <option>Sansaru Weddings</option>
+            <option>Ochentera</option>
+            <option>Bocachica</option>
+            <option>No lo sé todavía</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Aforo / nº invitados</label>
+          <input type="text" placeholder="Aproximado">
+        </div>
+      </div>
+      <div class="field field-full">
+        <label>Cuéntanos más</label>
+        <textarea placeholder="Sala, espacio, ideas, presupuesto orientativo, cualquier detalle que quieras compartir..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button class="btn-submit" type="submit">Enviar consulta</button>
+        <div class="submit-note">Te respondemos en menos de 48h<br>con una propuesta personalizada.</div>
+      </div>
+    </form>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="info-section">
+
+    <a class="whatsapp-btn" href="https://wa.me/34645714101" target="_blank">
+      <svg class="wa-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <div>
+        <div class="wa-text">Escribir por WhatsApp</div>
+        <div class="wa-num">645 714 101 · Respuesta inmediata</div>
+      </div>
+    </a>
+
+    <div class="info-block">
+      <div class="info-block-title">Horario de atención</div>
+      <div class="horario-grid">
+        <div class="horario-item">
+          <span class="horario-dia">Lunes – Viernes</span>
+          <span class="horario-hora">10:00 – 20:00</span>
+        </div>
+        <div class="horario-item">
+          <span class="horario-dia">Sábado</span>
+          <span class="horario-hora">10:00 – 14:00</span>
+        </div>
+        <div class="horario-item">
+          <span class="horario-dia">WhatsApp</span>
+          <span class="horario-badge">Siempre activo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-block-title">Nuestras marcas</div>
+      <div class="marcas-contacto">
+        <div class="marca-contacto-item" onclick="window.open('https://sansaru.es/sansaru')">
+          <div class="mci-dot" style="background:var(--gold);"></div>
+          <div class="mci-name">Sansaru On Tour</div>
+          <div class="mci-arrow">→</div>
+        </div>
+        <div class="marca-contacto-item" onclick="window.location.href='/weddings'">
+          <div class="mci-dot" style="background:#C87090;"></div>
+          <div class="mci-name">Sansaru Weddings</div>
+          <div class="mci-arrow">→</div>
+        </div>
+        <div class="marca-contacto-item" onclick="window.location.href='/ochentera'">
+          <div class="mci-dot" style="background:#D4AA40;"></div>
+          <div class="mci-name">Ochentera</div>
+          <div class="mci-arrow">→</div>
+        </div>
+        <div class="marca-contacto-item" onclick="window.location.href='/bocachica'">
+          <div class="mci-dot" style="background:#3C8C64;"></div>
+          <div class="mci-name">Bocachica</div>
+          <div class="mci-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <div class="info-block-title">Redes sociales</div>
+      <div class="info-block-text">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="https://www.instagram.com/sansaruontour" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.06);">@sansaruontour <span style="color:rgba(255,255,255,0.25);">IG →</span></a>
+          <a href="https://www.instagram.com/sansaruweddings" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;display:flex;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.06);">@sansaruweddings <span style="color:rgba(255,255,255,0.25);">IG →</span></a>
+          <a href="https://www.facebook.com/sansaruontour" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:13px;display:flex;justify-content:space-between;padding:6px 0;">Sansaru On Tour <span style="color:rgba(255,255,255,0.25);">FB →</span></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAPA -->
+<div class="mapa">
+  <div class="mapa-inner">
+    <div class="mapa-label">Nuestra base de operaciones</div>
+    <div class="mapa-loc">Villalonga · Valencia</div>
+    <div class="mapa-sub">Trabajamos en toda la Comunitat Valenciana</div>
+    <!-- Aquí puedes embeber Google Maps con un iframe -->
+    <!-- <iframe src="https://maps.google.com/..." width="100%" height="300" style="border:0;" allowfullscreen loading="lazy"></iframe> -->
+  </div>
+</div>
+
+<!-- GARANTÍAS -->
+<div class="garantias">
+  <div class="form-eyebrow" style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;">
+    <span style="width:12px;height:1px;background:var(--gold);display:inline-block;"></span>
+    Por qué elegirnos
+  </div>
+  <div class="gar-grid">
+    <div class="gar-item">
+      <div class="gar-num">48h</div>
+      <div class="gar-text">Respuesta garantizada con propuesta completa y rider técnico</div>
+    </div>
+    <div class="gar-item">
+      <div class="gar-num">25+</div>
+      <div class="gar-text">Años de experiencia en el sector del entretenimiento</div>
+    </div>
+    <div class="gar-item">
+      <div class="gar-num">100%</div>
+      <div class="gar-text">Equipo propio sin intermediarios. Siempre con contrato y seguro</div>
+    </div>
+    <div class="gar-item">
+      <div class="gar-num">0€</div>
+      <div class="gar-text">La consulta es gratuita y sin ningún compromiso</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-bottom">
+    <div class="flogo">FIESTO<em>P</em>IA</div>
+    <div class="fcopy">© 2026 Fiestopia S.L. · Todos los derechos reservados</div>
+    <div class="flegal">
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-cookies">Cookies</a>
+      <a href="/politica-privacidad">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function selectTipo(el){
+  document.querySelectorAll('.tipo-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+</script>
+</body>
+</html>

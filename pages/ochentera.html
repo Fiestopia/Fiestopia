@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ochentera · Fiestopia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;color:#fff;background:#0a0005;overflow-x:hidden;}
+.och-nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2rem;position:absolute;top:0;left:0;right:0;z-index:20;}
+.och-nav-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;}
+.och-nav-logo span{color:#f0a500;}
+.och-nav-back{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.5);text-decoration:none;}
+.och-nav-cta{font-size:12px;text-transform:uppercase;letter-spacing:1px;padding:8px 18px;border-radius:3px;background:#f0a500;color:#0a0005;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+
+.och-hero{position:relative;height:100vh;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;}
+.och-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+.och-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,0,5,0.3) 0%,rgba(10,0,5,0.1) 40%,rgba(10,0,5,0.85) 80%,#0a0005 100%);z-index:1;}
+.och-scanlines{position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.08) 2px,rgba(0,0,0,0.08) 4px);pointer-events:none;}
+.och-hero-placeholder{position:absolute;inset:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;z-index:0;}
+.och-hero-placeholder-icon{width:64px;height:64px;border-radius:50%;border:2px solid #f0a500;display:flex;align-items:center;justify-content:center;}
+.och-hero-placeholder-icon::after{content:'';border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent #f0a500;margin-left:4px;}
+.och-hero-content{position:relative;z-index:3;padding:0 2rem 4rem;width:100%;}
+.och-hero-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#f0a500;margin-bottom:1.5rem;display:flex;align-items:center;gap:8px;}
+.och-hero-eyebrow::before{content:'';width:20px;height:1px;background:#f0a500;}
+.och-hero-title{font-family:'Bebas Neue',sans-serif;font-size:100px;line-height:0.88;letter-spacing:2px;margin-bottom:1.5rem;}
+.och-hero-title .line1{display:block;color:#fff;}
+.och-hero-title .line2{display:block;color:#f0a500;text-shadow:0 0 40px rgba(240,165,0,0.6),0 0 80px rgba(240,165,0,0.3);}
+.och-hero-sub{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:500px;margin-bottom:2rem;}
+.och-hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.och-btn-primary{background:#f0a500;color:#0a0005;padding:14px 28px;border-radius:3px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:1px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+.och-btn-ghost{background:transparent;color:#fff;padding:14px 28px;border-radius:3px;font-size:13px;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;border:0.5px solid rgba(255,255,255,0.3);font-family:'DM Sans',sans-serif;}
+
+.och-ticker{background:#f0a500;padding:0.75rem 0;overflow:hidden;}
+.och-ticker-inner{display:flex;animation:ticker 20s linear infinite;white-space:nowrap;}
+.och-ticker-text{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#0a0005;padding:0 2rem;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.och-upcoming{background:#0a0005;padding:3rem 2rem;border-bottom:0.5px solid rgba(240,165,0,0.2);}
+.och-upcoming-inner{display:flex;align-items:center;gap:2rem;flex-wrap:wrap;}
+.och-upcoming-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f0a500;white-space:nowrap;}
+.och-upcoming-events{display:flex;gap:1.5rem;flex:1;flex-wrap:wrap;}
+.och-upcoming-event{display:flex;align-items:center;gap:12px;padding:0.75rem 1.25rem;border:0.5px solid rgba(240,165,0,0.25);border-radius:4px;cursor:pointer;transition:border-color 0.15s;}
+.och-upcoming-event:hover{border-color:#f0a500;}
+.och-upcoming-date{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#f0a500;line-height:1;text-align:center;min-width:40px;}
+.och-upcoming-date span{display:block;font-family:'DM Sans',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.4);}
+.och-upcoming-info{font-size:13px;color:#fff;}
+.och-upcoming-sala{font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;}
+.och-upcoming-cta{background:#f0a500;color:#0a0005;padding:10px 20px;border-radius:3px;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;white-space:nowrap;}
+
+.och-section{padding:5rem 2rem;border-bottom:0.5px solid rgba(255,255,255,0.06);}
+.och-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#f0a500;margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.och-eyebrow::before{content:'';width:16px;height:1px;background:#f0a500;}
+.och-section-title{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:1px;color:#fff;line-height:1;margin-bottom:2rem;}
+.och-section-title em{font-style:normal;color:#f0a500;}
+
+.och-que-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.och-que-text p{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:1.25rem;}
+.och-que-text strong{color:#f0a500;}
+.och-que-video{aspect-ratio:16/9;background:#111;border-radius:6px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border:0.5px solid rgba(240,165,0,0.2);}
+.och-play-btn{width:64px;height:64px;border-radius:50%;border:2px solid #f0a500;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.15s;}
+.och-play-btn:hover{background:rgba(240,165,0,0.15);}
+.och-play-btn::after{content:'';border-style:solid;border-width:10px 0 10px 18px;border-color:transparent transparent transparent #f0a500;margin-left:4px;}
+.och-video-label{position:absolute;bottom:16px;left:16px;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;}
+
+.och-partes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(240,165,0,0.1);border:0.5px solid rgba(240,165,0,0.1);}
+.och-parte{background:#0a0005;padding:2.5rem 2rem;position:relative;overflow:hidden;}
+.och-parte-num{font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(240,165,0,0.08);position:absolute;top:-10px;right:16px;line-height:1;}
+.och-parte-icon{width:40px;height:3px;background:#f0a500;margin-bottom:1.5rem;border-radius:2px;}
+.och-parte-title{font-family:'Bebas Neue',sans-serif;font-size:28px;color:#fff;margin-bottom:0.75rem;letter-spacing:1px;}
+.och-parte-desc{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;}
+.och-parte-duracion{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:4px 10px;border-radius:100px;border:0.5px solid rgba(240,165,0,0.3);color:#f0a500;margin-top:1rem;}
+
+.och-artistas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2rem;}
+.och-artista{border:0.5px solid rgba(255,255,255,0.08);border-radius:6px;overflow:hidden;aspect-ratio:3/4;position:relative;display:flex;align-items:flex-end;background:#111;cursor:pointer;transition:border-color 0.15s;}
+.och-artista:hover{border-color:rgba(240,165,0,0.4);}
+.och-artista img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.7;}
+.och-artista-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,0,5,0.9) 0%,transparent 60%);}
+.och-artista-info{position:relative;padding:1rem;}
+.och-artista-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#fff;}
+.och-artista-role{font-size:11px;color:#f0a500;text-transform:uppercase;letter-spacing:1px;}
+.och-artista-placeholder{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-transform:uppercase;}
+
+.och-galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:200px 200px;gap:4px;}
+.och-gal-item{background:#111;overflow:hidden;position:relative;cursor:pointer;}
+.och-gal-item.big{grid-column:span 2;grid-row:span 2;}
+.och-gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.och-gal-item:hover img{transform:scale(1.05);}
+.och-gal-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;text-transform:uppercase;}
+
+.och-salas{background:#0d0008;padding:5rem 2rem;border-top:0.5px solid rgba(240,165,0,0.15);border-bottom:0.5px solid rgba(240,165,0,0.15);}
+.och-salas-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.och-salas-specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(240,165,0,0.1);border:0.5px solid rgba(240,165,0,0.1);margin-top:2rem;}
+.och-spec{background:#0d0008;padding:1.25rem;}
+.och-spec-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,0.35);margin-bottom:6px;}
+.och-spec-val{font-size:15px;font-weight:500;color:#fff;}
+.och-salas-right p{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:1.25rem;}
+.och-salas-actions{display:flex;gap:10px;margin-top:2rem;flex-wrap:wrap;}
+
+.och-cta-final{padding:5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.och-cta-bg{position:absolute;inset:0;font-family:'Bebas Neue',sans-serif;font-size:300px;color:rgba(240,165,0,0.03);line-height:1;display:flex;align-items:center;justify-content:center;pointer-events:none;letter-spacing:-8px;}
+.och-cta-final-title{font-family:'Bebas Neue',sans-serif;font-size:72px;color:#fff;line-height:0.95;margin-bottom:1.5rem;position:relative;}
+.och-cta-final-title em{font-style:normal;color:#f0a500;display:block;}
+.och-cta-final-sub{font-size:15px;color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto 2.5rem;line-height:1.7;}
+.och-cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
+
+.och-footer{padding:2rem;display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid rgba(255,255,255,0.06);}
+.och-footer-logo{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:rgba(255,255,255,0.3);}
+.och-footer-brand{font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:0.5px;}
+</style>
+</head>
+<body>
+
+<nav class="och-nav">
+  <div class="och-nav-logo">FIESTO<span>P</span>IA</div>
+  <a class="och-nav-back" href="/">← Volver</a>
+  <button class="och-nav-cta">Comprar entradas</button>
+</nav>
+
+<div class="och-hero">
+  <!-- REEMPLAZA CON TU VÍDEO: -->
+  <!-- <video autoplay muted loop playsinline src="tu-video-ochentera.mp4"></video> -->
+  <div class="och-hero-placeholder">
+    <div class="och-hero-placeholder-icon"></div>
+    <div style="font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:1px;text-transform:uppercase;margin-top:0.5rem;">Aquí va tu vídeo de portada</div>
+  </div>
+  <div class="och-hero-overlay"></div>
+  <div class="och-scanlines"></div>
+  <div class="och-hero-content">
+    <div class="och-hero-eyebrow">La fiesta de los 80 · Gandia · Valencia</div>
+    <h1 class="och-hero-title">
+      <span class="line1">Viaja a los</span>
+      <span class="line2">ochenta.</span>
+    </h1>
+    <p class="och-hero-sub">Banda tributo en directo, sesión DJ con los mejores temazos de la época y animación en pista. 4 horas que no vas a olvidar.</p>
+    <div class="och-hero-actions">
+      <button class="och-btn-primary">Ver próximas fechas</button>
+      <button class="och-btn-ghost">¿Qué es Ochentera?</button>
+    </div>
+  </div>
+</div>
+
+<div class="och-ticker">
+  <div class="och-ticker-inner">
+    <span class="och-ticker-text">THRILLER</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">GIRLS JUST WANT TO HAVE FUN</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">LIVIN' ON A PRAYER</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">TAKE ON ME</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">DON'T STOP ME NOW</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">LIKE A PRAYER</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">SWEET CHILD O' MINE</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">THRILLER</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">GIRLS JUST WANT TO HAVE FUN</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">LIVIN' ON A PRAYER</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">TAKE ON ME</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">DON'T STOP ME NOW</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">LIKE A PRAYER</span><span class="och-ticker-text">·</span>
+    <span class="och-ticker-text">SWEET CHILD O' MINE</span><span class="och-ticker-text">·</span>
+  </div>
+</div>
+
+<div class="och-upcoming">
+  <div class="och-upcoming-inner">
+    <div class="och-upcoming-label">Próximas fechas</div>
+    <div class="och-upcoming-events">
+      <div class="och-upcoming-event">
+        <div class="och-upcoming-date">12<span>abr</span></div>
+        <div>
+          <div class="och-upcoming-info">Ochentera · Primavera</div>
+          <div class="och-upcoming-sala">Nombre de la sala · Gandia · 17:00h</div>
+        </div>
+      </div>
+      <div class="och-upcoming-event">
+        <div class="och-upcoming-date">04<span>may</span></div>
+        <div>
+          <div class="och-upcoming-info">Ochentera · Mayo</div>
+          <div class="och-upcoming-sala">Nombre de la sala · Alzira · 17:00h</div>
+        </div>
+      </div>
+      <div class="och-upcoming-event">
+        <div class="och-upcoming-date">+3<span>más</span></div>
+        <div>
+          <div class="och-upcoming-info">Ver calendario completo</div>
+          <div class="och-upcoming-sala">Todas las fechas disponibles</div>
+        </div>
+      </div>
+    </div>
+    <button class="och-upcoming-cta">Entradas →</button>
+  </div>
+</div>
+
+<div class="och-section">
+  <div class="och-que-grid">
+    <div class="och-que-text">
+      <div class="och-eyebrow">La movida</div>
+      <h2 class="och-section-title">La década<br>que lo cambió <em>todo.</em></h2>
+      <p>Ochentera es tu viaje en el tiempo a los <strong>años 80</strong>. Una tarde donde revivimos la mejor música y la energía de la década que marcó una generación.</p>
+      <p>Pon tus Ray-Ban, sube el cuello de tu chaqueta de neón y déjate llevar por los ritmos de <strong>Michael Jackson, Madonna, Queen y Prince</strong>.</p>
+      <p>La fiesta se compone de <strong>dos partes</strong>: primero la banda en directo con los mejores temas de la época, después la sesión DJ con animación en pista y regalos para todos.</p>
+    </div>
+    <div class="och-que-video">
+      <div class="och-play-btn"></div>
+      <div class="och-video-label">Vídeo de la última Ochentera</div>
+    </div>
+  </div>
+</div>
+
+<div class="och-section" style="padding-top:0;">
+  <div class="och-eyebrow">El formato</div>
+  <h2 class="och-section-title">4 horas. <em>Sin parar.</em></h2>
+  <div class="och-partes">
+    <div class="och-parte">
+      <div class="och-parte-num">01</div>
+      <div class="och-parte-icon"></div>
+      <div class="och-parte-title">Banda en directo</div>
+      <div class="och-parte-desc">La banda abre Ochentera a lo grande. Dos horas de locura y musicón con los temas que marcaron una era. Queen, Michael Jackson, Madonna, Bon Jovi... Os harán vibrar sin descanso.</div>
+      <span class="och-parte-duracion">2 horas · En directo</span>
+    </div>
+    <div class="och-parte">
+      <div class="och-parte-num">02</div>
+      <div class="och-parte-icon"></div>
+      <div class="och-parte-title">DJ + Animación + Regalos</div>
+      <div class="och-parte-desc">DJ Santi Canet, el más ochentero y especializado, toma las riendas. Nuestro equipo de animación reparte regalos temáticos y monta bailes de los buenos. No pararéis de cantar.</div>
+      <span class="och-parte-duracion">2 horas · DJ + Show</span>
+    </div>
+  </div>
+</div>
+
+<div class="och-section">
+  <div class="och-eyebrow">Los protagonistas</div>
+  <h2 class="och-section-title">Los artistas<br>de <em>Ochentera.</em></h2>
+  <div class="och-artistas-grid">
+    <div class="och-artista">
+      <div class="och-artista-placeholder">foto banda</div>
+      <div class="och-artista-overlay"></div>
+      <div class="och-artista-info">
+        <div class="och-artista-name">La Banda</div>
+        <div class="och-artista-role">Tributo en directo · 2h</div>
+      </div>
+    </div>
+    <div class="och-artista">
+      <div class="och-artista-placeholder">foto dj</div>
+      <div class="och-artista-overlay"></div>
+      <div class="och-artista-info">
+        <div class="och-artista-name">DJ Santi Canet</div>
+        <div class="och-artista-role">Sesión 80s · 2h</div>
+      </div>
+    </div>
+    <div class="och-artista">
+      <div class="och-artista-placeholder">foto animación</div>
+      <div class="och-artista-overlay"></div>
+      <div class="och-artista-info">
+        <div class="och-artista-name">Performance</div>
+        <div class="och-artista-role">Animación + Regalos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="och-section" style="padding-bottom:0;">
+  <div class="och-eyebrow">La experiencia</div>
+  <h2 class="och-section-title" style="margin-bottom:2rem;">Así se vive <em>Ochentera.</em></h2>
+</div>
+<div class="och-galeria">
+  <div class="och-gal-item big"><div class="och-gal-placeholder">foto principal · pista llena</div></div>
+  <div class="och-gal-item"><div class="och-gal-placeholder">foto banda</div></div>
+  <div class="och-gal-item"><div class="och-gal-placeholder">foto público</div></div>
+  <div class="och-gal-item"><div class="och-gal-placeholder">foto dj</div></div>
+  <div class="och-gal-item"><div class="och-gal-placeholder">foto regalos</div></div>
+</div>
+
+<div class="och-salas">
+  <div class="och-salas-grid">
+    <div>
+      <div class="och-eyebrow">Para salas y promotores</div>
+      <h2 class="och-section-title">¿Ochentera<br>en tu <em>sala?</em></h2>
+      <div class="och-salas-specs">
+        <div class="och-spec"><div class="och-spec-label">Aforo recomendado</div><div class="och-spec-val">150 – 600 pax</div></div>
+        <div class="och-spec"><div class="och-spec-label">Duración</div><div class="och-spec-val">4 horas</div></div>
+        <div class="och-spec"><div class="och-spec-label">Horario</div><div class="och-spec-val">Tardeo · 17h – 21h</div></div>
+        <div class="och-spec"><div class="och-spec-label">Equipo</div><div class="och-spec-val">Banda + DJ + Animación</div></div>
+        <div class="och-spec"><div class="och-spec-label">Público</div><div class="och-spec-val">35 – 60 años</div></div>
+        <div class="och-spec"><div class="och-spec-label">Rider</div><div class="och-spec-val">PDF disponible</div></div>
+      </div>
+    </div>
+    <div class="och-salas-right">
+      <p>La fiesta híbrida que combina los mejores temas de los 80 en directo con una sesión DJ de alto nivel. Un formato único pensado para el público de tardeo.</p>
+      <p>Alto poder adquisitivo, público fiel y un formato que <strong style="color:#f0a500;">llena salas</strong> con una propuesta diferente a todo lo que existe en el mercado.</p>
+      <div class="och-salas-actions">
+        <button class="och-btn-primary">Hablemos</button>
+        <button class="och-btn-ghost">Descargar rider</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="och-cta-final">
+  <div class="och-cta-bg">80</div>
+  <h2 class="och-cta-final-title">
+    Tu próximo plan<br>
+    <em>ya tiene fecha.</em>
+  </h2>
+  <p class="och-cta-final-sub">Busca en el calendario la fecha que mejor encaje y compra tu entrada con antelación. Tu tardeo ochentero te está esperando.</p>
+  <div class="och-cta-actions">
+    <button class="och-btn-primary">Comprar entradas</button>
+    <button class="och-btn-ghost">Ver calendario</button>
+  </div>
+</div>
+
+<div class="och-footer">
+  <div class="och-footer-logo">OCHENTERA · FIESTOPIA</div>
+  <div class="och-footer-brand">by Fiestopia · 645 714 101</div>
+</div>
+
+</body>
+</html>

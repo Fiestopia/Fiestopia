@@ -1,0 +1,54 @@
+[build]
+  publish = "."
+
+# Redirects de URLs limpias
+[[redirects]]
+  from = "/contacto"
+  to = "/pages/contacto.html"
+  status = 200
+
+[[redirects]]
+  from = "/eventos"
+  to = "/pages/eventos.html"
+  status = 200
+
+[[redirects]]
+  from = "/nosotros"
+  to = "/pages/nosotros.html"
+  status = 200
+
+[[redirects]]
+  from = "/ochentera"
+  to = "/pages/ochentera.html"
+  status = 200
+
+[[redirects]]
+  from = "/bocachica"
+  to = "/pages/bocachica.html"
+  status = 200
+
+[[redirects]]
+  from = "/sansaru"
+  to = "/pages/sansaru.html"
+  status = 200
+
+[[redirects]]
+  from = "/para-salas"
+  to = "/pages/para-salas.html"
+  status = 200
+
+[[redirects]]
+  from = "/weddings"
+  to = "/pages/weddings.html"
+  status = 200
+
+# Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Cache-Control = "no-cache"

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre nosotros · Fiestopia</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0A0A0A;--black2:#111111;--black3:#1A1A1A;
+  --white:#FFFFFF;--off-white:#F5F4F0;--light:#ECECEA;
+  --gold:#C9A84C;--gold2:#E2BC6A;
+  --text-dark:#1A1A1A;--text-mid:#555550;
+  --text-light:rgba(255,255,255,0.55);--text-dimmer:rgba(255,255,255,0.25);
+  --line-dark:rgba(0,0,0,0.08);--line-light:rgba(255,255,255,0.08);--line-light2:rgba(255,255,255,0.14);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--white);overflow-x:hidden;}
+::selection{background:var(--gold);color:#fff;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-thumb{background:var(--gold);}
+.gold-line{height:3px;background:var(--gold);width:100%;}
+
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;background:var(--black);border-bottom:0.5px solid var(--line-light);position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:var(--white);}
+.nav-logo em{font-style:normal;color:var(--gold);}
+.nav-menu{display:flex;gap:2.5rem;list-style:none;}
+.nav-menu a{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-light);text-decoration:none;transition:color 0.2s;}
+.nav-menu a:hover{color:var(--white);}
+.nav-btn{background:var(--gold);color:var(--black);padding:9px 22px;border-radius:3px;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;}
+
+/* HERO BLANCO */
+.hero{background:var(--white);padding:8rem 2.5rem 6rem;border-bottom:0.5px solid var(--line-dark);}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;}
+.hero-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:min(10vw,96px);color:var(--black);line-height:0.88;margin-bottom:2rem;}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-sub{font-size:16px;color:var(--text-mid);line-height:1.85;font-weight:300;margin-bottom:2rem;}
+.hero-sub strong{color:var(--text-dark);font-weight:500;}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);text-decoration:none;font-weight:500;transition:gap 0.2s;}
+.hero-cta:hover{gap:12px;}
+.hero-foto{position:relative;}
+.hero-foto-main{width:100%;aspect-ratio:4/5;background:var(--light);border-radius:2px;overflow:hidden;}
+.hero-foto-main img{width:100%;height:100%;object-fit:cover;}
+.hero-foto-badge{position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--gold);padding:1.25rem 1.5rem;border-radius:3px;}
+.hfb-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--black);line-height:1;}
+.hfb-label{font-size:11px;color:rgba(0,0,0,0.6);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;}
+
+/* NÚMEROS */
+.nums{background:var(--black);padding:5rem 2.5rem;border-top:0.5px solid var(--line-light);}
+.nums-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-light);}
+.ncard{background:var(--black2);padding:2.5rem 2rem;}
+.ncard-v{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--white);line-height:1;margin-bottom:6px;}
+.ncard-v em{color:var(--gold);font-style:normal;}
+.ncard-l{font-size:13px;color:var(--text-light);line-height:1.5;font-weight:300;}
+
+/* HISTORIA TIMELINE */
+.historia{background:var(--off-white);padding:7rem 2.5rem;}
+.historia-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.historia-eyebrow::before{content:'';width:12px;height:1px;background:var(--gold);}
+.historia-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--black);line-height:0.92;margin-bottom:4rem;}
+.historia-title em{font-style:normal;color:var(--gold);}
+.timeline{display:flex;flex-direction:column;gap:0;max-width:800px;}
+.tl-item{display:grid;grid-template-columns:120px 1fr;gap:2rem;padding:2.5rem 0;border-bottom:0.5px solid var(--line-dark);position:relative;}
+.tl-item:last-child{border-bottom:none;}
+.tl-item::before{content:'';position:absolute;top:0;left:120px;width:1px;height:100%;background:var(--line-dark);}
+.tl-year{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;padding-top:0.25rem;}
+.tl-content{}
+.tl-title{font-size:17px;font-weight:500;color:var(--text-dark);margin-bottom:0.5rem;}
+.tl-text{font-size:14px;color:var(--text-mid);line-height:1.7;font-weight:300;}
+
+/* VALORES */
+.valores{background:var(--black);padding:7rem 2.5rem;}
+.valores-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.valores-eyebrow::before{content:'';width:12px;height:1px;background:var(--gold);}
+.valores-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--white);line-height:0.92;margin-bottom:4rem;}
+.valores-title em{font-style:normal;color:var(--gold);}
+.valores-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-light);}
+.valor{background:var(--black2);padding:3rem 2.5rem;position:relative;transition:background 0.2s;}
+.valor:hover{background:var(--black3);}
+.valor-line{position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background 0.3s;}
+.valor:hover .valor-line{background:var(--gold);}
+.valor-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--line-light2);line-height:1;margin-bottom:1.25rem;}
+.valor-title{font-size:20px;font-weight:500;color:var(--white);margin-bottom:0.875rem;}
+.valor-text{font-size:14px;color:var(--text-light);line-height:1.75;font-weight:300;}
+
+/* EQUIPO */
+.equipo{background:var(--white);padding:7rem 2.5rem;}
+.equipo-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.equipo-eyebrow::before{content:'';width:12px;height:1px;background:var(--gold);}
+.equipo-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--black);line-height:0.92;margin-bottom:1.5rem;}
+.equipo-title em{font-style:normal;color:var(--gold);}
+.equipo-sub{font-size:15px;color:var(--text-mid);line-height:1.8;max-width:600px;margin-bottom:4rem;font-weight:300;}
+.equipo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line-dark);}
+.miembro{background:var(--white);overflow:hidden;}
+.miembro-foto{width:100%;aspect-ratio:3/4;background:var(--light);overflow:hidden;position:relative;}
+.miembro-foto img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.miembro:hover .miembro-foto img{transform:scale(1.03);}
+.miembro-foto-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:56px;color:rgba(0,0,0,0.08);}
+.miembro-body{padding:1.5rem 1.75rem;}
+.miembro-nombre{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--black);letter-spacing:0.5px;margin-bottom:4px;}
+.miembro-rol{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);margin-bottom:0.75rem;}
+.miembro-bio{font-size:13px;color:var(--text-mid);line-height:1.65;font-weight:300;}
+
+/* MARCAS RESUMEN */
+.marcas-resumen{background:var(--off-white);padding:7rem 2.5rem;}
+.mr-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
+.mr-eyebrow::before{content:'';width:12px;height:1px;background:var(--gold);}
+.mr-title{font-family:'Bebas Neue',sans-serif;font-size:min(7vw,64px);color:var(--black);line-height:0.92;margin-bottom:3rem;}
+.mr-title em{font-style:normal;color:var(--gold);}
+.mr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line-dark);}
+.mr-card{background:var(--white);padding:2rem 1.75rem;cursor:pointer;transition:background 0.15s;text-decoration:none;display:block;}
+.mr-card:hover{background:var(--light);}
+.mr-accent{width:24px;height:2px;border-radius:1px;margin-bottom:1.25rem;}
+.mr-name{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--black);letter-spacing:0.5px;margin-bottom:4px;line-height:1;}
+.mr-tag{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-mid);margin-bottom:1rem;}
+.mr-arrow{font-size:12px;color:var(--gold);}
+
+/* CTA */
+.cta-final{background:var(--black);padding:7rem 2.5rem;}
+.cta-inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem;}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:min(8vw,76px);color:var(--white);line-height:0.9;margin-bottom:1.25rem;}
+.cta-title em{font-style:normal;color:var(--gold);}
+.cta-sub{font-size:15px;color:var(--text-light);max-width:500px;line-height:1.75;font-weight:300;}
+.cta-actions{display:flex;flex-direction:column;gap:10px;min-width:240px;}
+.btn-gold{background:var(--gold);color:var(--black);padding:15px 32px;border-radius:3px;font-size:12px;font-weight:500;letter-spacing:0.8px;text-transform:uppercase;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;width:100%;transition:background 0.2s;}
+.btn-gold:hover{background:var(--gold2);}
+.btn-outline{background:transparent;color:rgba(255,255,255,0.6);padding:14px 32px;border-radius:3px;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;border:0.5px solid rgba(255,255,255,0.15);font-family:'DM Sans',sans-serif;width:100%;transition:border-color 0.2s;}
+.btn-outline:hover{border-color:rgba(255,255,255,0.35);}
+
+/* FOOTER */
+.footer{background:var(--black);border-top:0.5px solid var(--line-light);padding:2.5rem;}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:var(--white);}
+.flogo em{font-style:normal;color:var(--gold);}
+.fcopy{font-size:11px;color:var(--text-dimmer);}
+.flegal{display:flex;gap:2rem;}
+.flegal a{font-size:11px;color:var(--text-dimmer);text-decoration:none;}
+.flegal a:hover{color:var(--text-light);}
+</style>
+</head>
+<body>
+
+<div class="gold-line"></div>
+
+<nav class="nav">
+  <div class="nav-logo"><a href="/" style="text-decoration:none;color:inherit;">FIESTO<em>P</em>IA</a></div>
+  <ul class="nav-menu">
+    <li><a href="/marcas">Marcas</a></li>
+    <li><a href="/para-salas">Para salas</a></li>
+    <li><a href="/eventos">Eventos</a></li>
+    <li><a href="/contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-btn" onclick="window.location.href='/contacto'">Hablemos</button>
+</nav>
+
+<!-- HERO BLANCO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Sobre nosotros</div>
+      <h1 class="hero-title">No organizamos<br>fiestas. <em>Creamos<br>recuerdos.</em></h1>
+      <p class="hero-sub"><strong>25 años</strong> en el sector del entretenimiento nos han enseñado una cosa: la diferencia entre un evento que se olvida y uno que se recuerda toda la vida está en los detalles, en la energía y en las personas que hay detrás.</p>
+      <p class="hero-sub">Fiestopia no es una empresa de eventos. Es un grupo de personas apasionadas que lleva un cuarto de siglo haciendo que la gente baile, llore de emoción y recuerde.</p>
+      <a class="hero-cta" href="/contacto">Trabajemos juntos →</a>
+    </div>
+    <div class="hero-foto">
+      <div class="hero-foto-main">
+        <img src="https://fiestopia.es/wp-content/uploads/2025/09/20191207_SANSARU-022.webp" alt="Fiestopia evento">
+      </div>
+      <div class="hero-foto-badge">
+        <div class="hfb-num">25</div>
+        <div class="hfb-label">Años de experiencia</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NÚMEROS -->
+<div class="nums">
+  <div class="nums-grid">
+    <div class="ncard"><div class="ncard-v">25<em>+</em></div><div class="ncard-l">Años en el sector del entretenimiento</div></div>
+    <div class="ncard"><div class="ncard-v">4</div><div class="ncard-l">Marcas activas con identidad propia</div></div>
+    <div class="ncard"><div class="ncard-v">9.5<em>k</em></div><div class="ncard-l">Seguidores entre todas las marcas</div></div>
+    <div class="ncard"><div class="ncard-v">10<em>k+</em></div><div class="ncard-l">Asistentes por temporada</div></div>
+  </div>
+</div>
+
+<!-- HISTORIA -->
+<div class="historia">
+  <div class="historia-eyebrow">Nuestra historia</div>
+  <h2 class="historia-title">25 años de <em>experiencia.</em></h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2000</div>
+      <div class="tl-content">
+        <div class="tl-title">Los primeros pasos en el ocio nocturno</div>
+        <div class="tl-text">Empezamos en el sector del entretenimiento nocturno de la Comunitat Valenciana, aprendiendo el oficio desde dentro. Salas, DJs, producción — cada detalle importa.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2010</div>
+      <div class="tl-content">
+        <div class="tl-title">Nace Sansaru</div>
+        <div class="tl-text">Con más de una década de experiencia, lanzamos Sansaru — nuestra primera marca propia. Una propuesta de fiesta premium que rápidamente construyó una comunidad fiel en la provincia de Valencia.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2015</div>
+      <div class="tl-content">
+        <div class="tl-title">Sansaru Weddings y el mundo de las bodas</div>
+        <div class="tl-text">La experiencia de Sansaru encontró un nuevo hogar: las bodas. Sansaru Weddings nació con la temática Circus y rápidamente se convirtió en uno de los servicios de animación de bodas más reconocidos en Bodas.net.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2020</div>
+      <div class="tl-content">
+        <div class="tl-title">Ochentera y Bocachica: el tardeo</div>
+        <div class="tl-text">Identificamos un hueco en el mercado: el público adulto que quería salir pero no encontraba su sitio. Nacen Ochentera y Bocachica, dos formatos de tardeo completamente diferentes y complementarios.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2025</div>
+      <div class="tl-content">
+        <div class="tl-title">Nace Fiestopia como grupo</div>
+        <div class="tl-text">Unificamos todas las marcas bajo un mismo paraguas: Fiestopia. Un grupo de entretenimiento con identidad propia, estructura profesional y visión de futuro. Rainbow está en camino.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VALORES -->
+<div class="valores">
+  <div class="valores-eyebrow">Cómo trabajamos</div>
+  <h2 class="valores-title">Lo que nos <em>define.</em></h2>
+  <div class="valores-grid">
+    <div class="valor">
+      <div class="valor-line"></div>
+      <div class="valor-num">01</div>
+      <div class="valor-title">Producción propia</div>
+      <div class="valor-text">Todo el equipo es nuestro. Sin subcontrataciones, sin intermediarios. La persona con quien hablas es la misma que estará el día del evento.</div>
+    </div>
+    <div class="valor">
+      <div class="valor-line"></div>
+      <div class="valor-num">02</div>
+      <div class="valor-title">Siempre con contrato</div>
+      <div class="valor-text">Todo por escrito, con factura y seguro de responsabilidad civil. La confianza se construye con transparencia, no con promesas verbales.</div>
+    </div>
+    <div class="valor">
+      <div class="valor-line"></div>
+      <div class="valor-num">03</div>
+      <div class="valor-title">Adaptación total</div>
+      <div class="valor-text">No vendemos paquetes rígidos. Escuchamos, entendemos y diseñamos la experiencia exacta que cada cliente necesita.</div>
+    </div>
+    <div class="valor">
+      <div class="valor-line"></div>
+      <div class="valor-num">04</div>
+      <div class="valor-title">Calidad constante</div>
+      <div class="valor-text">25 años de experiencia significan 25 años perfeccionando cada detalle: sonido, luces, timing, energía. Nada se deja al azar.</div>
+    </div>
+    <div class="valor">
+      <div class="valor-line"></div>
+      <div class="valor-num">05</div>
+      <div class="valor-title">Comunicación continua</div>
+      <div class="valor-text">Desde el primer contacto hasta el día después del evento, estamos presentes. La relación con el cliente empieza en el minuto uno.</div>
+    </div>
+    <div class="valor">
+      <div class="valor-line"></div>
+      <div class="valor-num">06</div>
+      <div class="valor-title">Resultados medibles</div>
+      <div class="valor-text">Nuestros formatos llenan salas. Nuestras bodas generan reseñas de 5 estrellas. Los resultados hablan mejor que cualquier promesa.</div>
+    </div>
+  </div>
+</div>
+
+<!-- EQUIPO -->
+<div class="equipo">
+  <div class="equipo-eyebrow">El equipo</div>
+  <h2 class="equipo-title">Las personas<br>detrás de <em>Fiestopia.</em></h2>
+  <p class="equipo-sub">Un equipo de profesionales apasionados del entretenimiento que llevan años haciendo que la gente baile, celebre y recuerde.</p>
+  <div class="equipo-grid">
+    <div class="miembro">
+      <div class="miembro-foto">
+        <img src="https://fiestopia.es/wp-content/uploads/2025/09/529682589_1343755931090964_4684448534242857194_n.jpg" alt="Jose Ripoll">
+      </div>
+      <div class="miembro-body">
+        <div class="miembro-nombre">Jose Ripoll</div>
+        <div class="miembro-rol">Dirección · Sansaru Weddings</div>
+        <div class="miembro-bio">DJ, coordinador y alma de Sansaru Weddings. Casi 20 años en el mundo del ocio nocturno avalan cada propuesta que diseña.</div>
+      </div>
+    </div>
+    <div class="miembro">
+      <div class="miembro-foto">
+        <div class="miembro-foto-ph">DJ</div>
+      </div>
+      <div class="miembro-body">
+        <div class="miembro-nombre">DJ Santi Canet</div>
+        <div class="miembro-rol">Residente Ochentera</div>
+        <div class="miembro-bio">El alma musical de Ochentera. Especializado en los temazos de los 80, convierte cada sesión en un viaje en el tiempo.</div>
+      </div>
+    </div>
+    <div class="miembro">
+      <div class="miembro-foto">
+        <div class="miembro-foto-ph">EQ</div>
+      </div>
+      <div class="miembro-body">
+        <div class="miembro-nombre">El equipo</div>
+        <div class="miembro-rol">Producción · Animación · Técnicos</div>
+        <div class="miembro-bio">Técnicos de sonido, animadores, DJs residentes y coordinadores. Un equipo completo que trabaja como uno solo.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARCAS -->
+<div class="marcas-resumen">
+  <div class="mr-eyebrow">Nuestro portfolio</div>
+  <h2 class="mr-title">Las marcas de <em>Fiestopia.</em></h2>
+  <div class="mr-grid">
+    <a class="mr-card" href="https://sansaru.es/sansaru" target="_blank">
+      <div class="mr-accent" style="background:var(--gold);"></div>
+      <div class="mr-name">Sansaru On Tour</div>
+      <div class="mr-tag">Fiesta premium · Festival</div>
+      <div class="mr-arrow">→ sansaru.es</div>
+    </a>
+    <a class="mr-card" href="/weddings">
+      <div class="mr-accent" style="background:#C87090;"></div>
+      <div class="mr-name">Sansaru Weddings</div>
+      <div class="mr-tag">Bodas · Circus · DJ</div>
+      <div class="mr-arrow">→ Ver página</div>
+    </a>
+    <a class="mr-card" href="/ochentera">
+      <div class="mr-accent" style="background:#D4AA40;"></div>
+      <div class="mr-name">Ochentera</div>
+      <div class="mr-tag">Tardeo · Años 80</div>
+      <div class="mr-arrow">→ Ver página</div>
+    </a>
+    <a class="mr-card" href="/bocachica">
+      <div class="mr-accent" style="background:#3C8C64;"></div>
+      <div class="mr-name">Bocachica</div>
+      <div class="mr-tag">Pop español · Indie</div>
+      <div class="mr-arrow">→ Ver página</div>
+    </a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-final">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">¿Trabajamos<br><em>juntos?</em></h2>
+      <p class="cta-sub">Escríbenos y en menos de 48 horas tienes una propuesta completa sobre la mesa. Sin compromiso.</p>
+    </div>
+    <div class="cta-actions">
+      <button class="btn-gold" onclick="window.location.href='/contacto'">Contactar ahora</button>
+      <button class="btn-outline" onclick="window.open('https://wa.me/34645714101')">WhatsApp · 645 714 101</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <div class="flogo">FIESTO<em>P</em>IA</div>
+    <div class="fcopy">© 2026 Fiestopia S.L. · Todos los derechos reservados</div>
+    <div class="flegal">
+      <a href="/aviso-legal">Aviso legal</a>
+      <a href="/politica-cookies">Cookies</a>
+      <a href="/politica-privacidad">Privacidad</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
