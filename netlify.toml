@@ -1,7 +1,37 @@
 [build]
   publish = "."
 
-# Redirects de URLs limpias
+# ── REDIRECTS POR DOMINIO ─────────────────────────────────────────────────────
+
+# sansaru.es → sansaru.html
+[[redirects]]
+  from = "/*"
+  to = "/pages/sansaru.html"
+  status = 200
+  conditions = {Host = ["sansaru.es", "www.sansaru.es"]}
+
+# sansaruweddings.es → weddings.html
+[[redirects]]
+  from = "/*"
+  to = "/pages/weddings.html"
+  status = 200
+  conditions = {Host = ["sansaruweddings.es", "www.sansaruweddings.es"]}
+
+# ochentera.es → ochentera.html
+[[redirects]]
+  from = "/*"
+  to = "/pages/ochentera.html"
+  status = 200
+  conditions = {Host = ["ochentera.es", "www.ochentera.es"]}
+
+# bocachica.es → bocachica.html
+[[redirects]]
+  from = "/*"
+  to = "/pages/bocachica.html"
+  status = 200
+  conditions = {Host = ["bocachica.es", "www.bocachica.es"]}
+
+# ── URLS LIMPIAS fiestopia.es ─────────────────────────────────────────────────
 [[redirects]]
   from = "/contacto"
   to = "/pages/contacto.html"
@@ -42,7 +72,12 @@
   to = "/pages/weddings.html"
   status = 200
 
-# Headers
+[[redirects]]
+  from = "/rainbow"
+  to = "/pages/rainbow.html"
+  status = 200
+
+# ── HEADERS ───────────────────────────────────────────────────────────────────
 [[headers]]
   for = "/*"
   [headers.values]
