@@ -124,7 +124,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
 .sfoto-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(0,0,0,0.2);letter-spacing:1px;text-transform:uppercase;}
 
 /* ─── SECCIÓN NEGRA — MARCAS ─── */
-.marcas{background:var(--black);padding:7rem 2.5rem;}
+.marcas{background:var(--black);padding:5rem 2.5rem;}
 .marcas-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;}
 .sec-eyebrow-dark{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;}
 .sec-eyebrow-dark::before{content:'';width:12px;height:1px;background:var(--gold);}
@@ -136,11 +136,11 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
 /* Grid marcas */
 .mgrid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:auto;gap:2px;background:var(--line-light);}
 .mc{position:relative;overflow:hidden;cursor:pointer;background:var(--black2);}
-.mc{min-height:320px;}
+.mc{min-height:360px;border-radius:6px;overflow:hidden;}
 
 
 
-.mc-e{grid-column:1/13;min-height:72px;display:flex;align-items:center;background:transparent;border:0.5px solid var(--line-light);padding:1.5rem 2rem;gap:2rem;opacity:0.5;transition:opacity 0.2s;}
+.mc-e{grid-column:1/-1;min-height:72px;display:flex;align-items:center;background:transparent;border:0.5px solid var(--line-light);padding:1.5rem 2rem;gap:2rem;opacity:0.5;transition:opacity 0.2s;}
 .mc-e:hover{opacity:0.8;}
 .mc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;transition:opacity 0.45s,transform 0.55s;}
 .mc:hover .mc-img{opacity:0.5;transform:scale(1.03);}
@@ -475,7 +475,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
       <div class="mc-color" style="background:linear-gradient(90deg,rgba(60,140,100,0.35),transparent);"></div>
       <div class="mc-grad" style="background:linear-gradient(to right,rgba(10,10,10,0.97) 0%,rgba(10,10,10,0.15) 60%,transparent 100%);"></div>
       <div class="mc-arrow">→</div>
-      <div class="mc-body" >
+      <div class="mc-body">
         <div>
           <div class="mc-accent" style="background:#3C8C64;"></div>
           <div class="mc-name">Bocachica</div>
@@ -510,92 +510,9 @@ body{font-family:'DM Sans',sans-serif;color:var(--text-dark);background:var(--wh
     <a class="ev-ver" href="/eventos">Ver todos →</a>
   </div>
 
-  <div class="ev-tabs">
-    <button class="ev-tab on" onclick="filtrar('todos',this)" data-marca="todos">Todos</button>
-    <button class="ev-tab" onclick="filtrar('sansaru',this)" data-marca="sansaru">Sansaru</button>
-    <button class="ev-tab" onclick="filtrar('ochentera',this)" data-marca="ochentera">Ochentera</button>
-    <button class="ev-tab" onclick="filtrar('bocachica',this)" data-marca="bocachica">Bocachica</button>
+  <div style="margin-bottom:2rem;">
+    <script src="https://www.fourvenues.com/assets/iframe/fiestopia/events"></script>
   </div>
-
-  <div class="egrid" id="egrid">
-    <div class="ecard big" data-m="ochentera">
-      <div class="ecard-img">
-        <div class="ecard-ph">OCHENTERA</div>
-        <div class="ecard-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera</div>
-      </div>
-      <div class="ecard-body">
-        <div class="ecard-date">Sáb 12 Abr 2026 · 17:00h</div>
-        <div class="ecard-name">Ochentera · Primavera</div>
-        <div class="ecard-lugar">Nombre de la sala · Gandia</div>
-        <div class="ecard-foot">
-          <div class="ecard-price">12 € <span>general</span></div>
-          <button class="ecard-btn gold" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
-        </div>
-      </div>
-    </div>
-    <div class="ecard" data-m="bocachica">
-      <div class="ecard-img">
-        <div class="ecard-ph">BC</div>
-        <div class="ecard-badge" style="background:#D4EDDA;color:#1A5C30;">Bocachica</div>
-      </div>
-      <div class="ecard-body">
-        <div class="ecard-date">Vie 18 Abr 2026 · 19:00h</div>
-        <div class="ecard-name">Bocachica · Abril</div>
-        <div class="ecard-lugar">Nombre sala · Valencia</div>
-        <div class="ecard-foot">
-          <div class="ecard-price">8 €</div>
-          <button class="ecard-btn" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
-        </div>
-      </div>
-    </div>
-    <div class="ecard" data-m="sansaru">
-      <div class="ecard-img">
-        <div class="ecard-ph">SAN</div>
-        <div class="ecard-badge" style="background:#FCE4D6;color:#7A2500;">Sansaru</div>
-        <div class="ecard-sold">Pocas entradas</div>
-      </div>
-      <div class="ecard-body">
-        <div class="ecard-date">Sáb 26 Abr 2026 · 22:00h</div>
-        <div class="ecard-name">Sansaru On Tour</div>
-        <div class="ecard-lugar">Nombre sala · Gandia</div>
-        <div class="ecard-foot">
-          <div class="ecard-price">15 €</div>
-          <button class="ecard-btn" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
-        </div>
-      </div>
-    </div>
-    <div class="ecard" data-m="ochentera">
-      <div class="ecard-img">
-        <div class="ecard-ph">80</div>
-        <div class="ecard-badge" style="background:#FFF3CD;color:#7A5200;">Ochentera</div>
-      </div>
-      <div class="ecard-body">
-        <div class="ecard-date">Dom 4 May 2026 · 17:00h</div>
-        <div class="ecard-name">Ochentera · Mayo</div>
-        <div class="ecard-lugar">Nombre sala · Alzira</div>
-        <div class="ecard-foot">
-          <div class="ecard-price">10 €</div>
-          <button class="ecard-btn gold" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
-        </div>
-      </div>
-    </div>
-    <div class="ecard" data-m="sansaru">
-      <div class="ecard-img">
-        <div class="ecard-ph">SAN</div>
-        <div class="ecard-badge" style="background:#FCE4D6;color:#7A2500;">Sansaru</div>
-      </div>
-      <div class="ecard-body">
-        <div class="ecard-date">Sáb 10 May 2026 · 22:00h</div>
-        <div class="ecard-name">Sansaru On Tour</div>
-        <div class="ecard-lugar">Nombre sala · Dénia</div>
-        <div class="ecard-foot">
-          <div class="ecard-price">12 €</div>
-          <button class="ecard-btn" onclick="window.open('https://pro.fourvenues.com/')">Comprar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="ev-nl">
     <div class="ev-nl-t"><strong>¿No quieres perderte ninguno?</strong> Te avisamos cuando publiquemos nuevas fechas.</div>
     <div class="ev-nl-f">
